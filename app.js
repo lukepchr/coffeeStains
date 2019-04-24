@@ -20,6 +20,7 @@ function drawBoard() {
   let minTds = document.getElementsByName('mintds')[0].value;
   let maxTds = document.getElementsByName('maxtds')[0].value;
 
+
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   context.font = '10pt Helvetica';
