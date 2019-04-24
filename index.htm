@@ -1,0 +1,79 @@
+<html>
+
+<head>
+  <style>
+  *{
+  font-family: helvetica;
+
+}
+body{
+
+  background-color: white;
+  text-align: center;
+}
+.box{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 15px;
+}
+h1{
+  margin: 0;
+  padding: 0;
+}
+#customize{
+  display: flex;
+  flex-direction: column;
+}
+
+#flex{
+  display: flex;
+}
+#customize{
+  padding-top: 45px;
+}
+
+input[type=text]{
+  padding: 5px;
+}
+
+
+  </style>
+</head>
+
+<body>
+  <h1>Espresso Brew Formula</h1>
+  <div id="flex">
+    <div class="container">
+      <canvas id="canvas" width="950px" height="950px" style="background: #fff;     magrin:20px;"></canvas>
+    </div>
+    <div class="container">
+      <form id="customize" action="#">
+        <div id="box1" class="box">
+          <div class="level">
+            <input id="espressobox" type="checkbox" name="active" checked/>
+            <input type="text" name="Name" value="Espresso"/>
+          </div>
+          <hr>
+
+          <label for= "minextraction">
+          <input type="range" class="slider" name="minextraction" min=14 max=25 value=18 />min. extraction [%]</label>
+
+          <label for= "maxextraction">
+          <input type="range" class="slider" name="maxextraction" min=0 max=25 value=22 />max. extraction [%]</label>
+
+          <hr>
+          <label for="mintds"><input type="range" class="slider" name="mintds" min=2 max=20 value=8 />min. TDS [%]</label>
+          <label for="maxtds"><input type="range" class="slider" name="maxtds" min=2 max=20 value=12 />max. TDS [%]</label>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="app.js"></script>
+
+</html>
