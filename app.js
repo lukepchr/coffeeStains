@@ -19,6 +19,7 @@ let locateExt = (pp = 20) => {return (pp - 14) * size + p;};
 let locateTds = (pp = 8) => {return (20 - pp) * size + p;};
 
 let drawBoard = () => {
+  let box1title = document.getElementById('name').value;
   let espressobox = document.getElementById('espressobox').checked;
   let minEx = document.getElementsByName('minextraction')[0].value;
   let maxEx = document.getElementsByName('maxextraction')[0].value;
@@ -92,10 +93,12 @@ let drawBoard = () => {
 
   context.clearRect(0, 0, canvas.width, canvas.height);
 
-  context.font = '10pt Helvetica';
+  context.font = '12pt Helvetica';
   context.beginPath();
-  context.fillText('[%TDS]', 0, p - 22);
-  context.fillText('extraction [%]', size * w / 2, (h + 1) * size + p);
+  context.strokeStyle = 'black';
+  context.fillStyle = 'black';
+  context.fillText('[%TDS]', 0.5 * p, p - 22);
+  context.fillText('Extraction [%]', size * w / 2 + 10, (h + 1) * size + p + 10);
   context.closePath();
 
   if (espressobox) {
@@ -110,7 +113,7 @@ let drawBoard = () => {
 
   // plot the horizontal lines
   for (let x = 0; x <= w; x++) {
-    context.strokeStyle = "black";
+
     context.beginPath();
     context.moveTo(x * size + p, p);
 
@@ -125,11 +128,10 @@ let drawBoard = () => {
   }
 
   // plot the verical lines.
+  context.font = '12pt Helvetica';
   for (let y = 0; y <= h; y++) {
-    context.strokeStyle = "black";
     context.beginPath();
     context.moveTo(p - 10, y * size + p);
-    context.font = '12pt Helvetica';
     context.fillText(20 - y, p - 30, p + y * size + 6);
     context.lineTo(w * size + p, y * size + p);
     context.stroke();
@@ -146,11 +148,20 @@ let drawBoard = () => {
     context.fillStyle = col;
     context.lineTo(w * size + p, locateTds(ebf[i][1]));
     context.font = '9pt Helvetica';
-    context.fillText(`EBF ${ebf[i][2]}%`, w * size + p + 5, locateTds(ebf[i][1]) + 3);
+    context.fillText(`EBF ${ebf[i][2]}%`, 515, locateTds(ebf[i][1]) + 3);
     context.stroke();
     context.closePath();
   }
 
+  context.beginPath();
+  context.fillStyle = 'blue';
+  context.font = '15pt Helvetica';
+  context.textAlign = "center";
+  let xAvg = locateExt((minEx + maxEx)/2);
+  let yAvg = ((minTds + maxTds) / 2)-30;
+  context.fillText("boxe", xAvg, yAvg);
+  context.stroke();
+    context.closePath();
 };
 
 drawBoard();
