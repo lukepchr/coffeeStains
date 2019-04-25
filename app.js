@@ -1,6 +1,6 @@
 var w = 11; // plotting
 var h = 18; // plotting
-var p = 45; // padding
+var p = 70; // padding
 var size = 40;
 
 var canvas = document.getElementById('canvas');
@@ -11,20 +11,84 @@ canvas.width = canvas.width;
 canvas.height = h * size + 2 * p;
 canvas.width = w * size + 2 * p;
 canvas.textAlign = 'left';
-context.lineWidth = 0.3;
+context.lineWidth = 0.8;
 
+// convert the extraction [%] value into position on the grid
+let locateExt = (pp = 20) => {return (pp - 14) * size + p;};
+// convert the TDS [%] value into position on the grid
+let locateTds = (pp = 8) => {return (20 - pp) * size + p;};
 
-let locateExt = (pp) => {return (pp - 14) * size + p;};
-
-let locateTds = (pp) => {return (20 - pp) * size + p;};
-
-function drawBoard() {
+let drawBoard = () => {
   let espressobox = document.getElementById('espressobox').checked;
   let minEx = document.getElementsByName('minextraction')[0].value;
   let maxEx = document.getElementsByName('maxextraction')[0].value;
   let minTds = document.getElementsByName('mintds')[0].value;
   let maxTds = document.getElementsByName('maxtds')[0].value;
 
+  if (minEx < 14) {
+    minEx = 14;
+    document.getElementsByName('minextraction')[0].value = minEx;
+    if (minEx == maxEx) {
+      document.getElementsByName('maxextraction')[0].value = ++maxEx;
+    }
+  }
+
+  if (minEx > 25) {
+    minEx = 25;
+
+    if (minEx == maxEx) {
+      minEx--;
+    }
+    document.getElementsByName('minextraction')[0].value = minEx;
+  }
+
+  if (maxEx < 14) {
+    maxEx = 15;
+    document.getElementsByName('maxextraction')[0].value = maxEx;
+    if (minEx == maxEx) {
+      document.getElementsByName('minextraction')[0].value = --minEx;
+    }
+  }
+
+  if (maxEx > 25) {
+    maxEx = 25;
+    document.getElementsByName('maxextraction')[0].value = maxEx;
+    if (minEx == maxEx) {
+      document.getElementsByName('minextraction')[0].value = --minEx;
+    }
+  }
+
+  if (minTds < 2) {
+    minTds = 2;
+    document.getElementsByName('mintds')[0].value = minTds;
+    if (minTds == maxTds) {
+      document.getElementsByName('maxtds')[0].value = ++maxTds;
+    }
+  }
+
+  if (minTds > 20) {
+    minTds = 19;
+    document.getElementsByName('mintds')[0].value = minTds;
+    if (minTds == maxTds) {
+      document.getElementsByName('maxtds')[0].value = ++maxTds;
+    }
+  }
+
+  if (maxTds < 2) {
+    maxTds = 3;
+    document.getElementsByName('maxtds')[0].value = maxTds;
+    if (minTds == maxTds){
+      document.getElementsByName('mintds')[0].value = --minTds;
+    }
+  }
+
+  if (maxTds > 20) {
+    maxTds = 20;
+    document.getElementsByName('maxtds')[0].value = maxTds;
+    if (minTds == maxTds) {
+      document.getElementsByName('mintds')[0].value = --minTds;
+    }
+  }
 
   context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -46,6 +110,7 @@ function drawBoard() {
 
   // plot the horizontal lines
   for (let x = 0; x <= w; x++) {
+    context.strokeStyle = "black";
     context.beginPath();
     context.moveTo(x * size + p, p);
 
@@ -61,6 +126,7 @@ function drawBoard() {
 
   // plot the verical lines.
   for (let y = 0; y <= h; y++) {
+    context.strokeStyle = "black";
     context.beginPath();
     context.moveTo(p - 10, y * size + p);
     context.font = '12pt Helvetica';
@@ -69,11 +135,27 @@ function drawBoard() {
     context.stroke();
     context.closePath();
   }
-}
+
+  //plot ebf
+  for (let i = 0; i < ebf.length; i++)
+  {
+    context.beginPath();
+    context.moveTo(p, locateTds(ebf[i][0]));
+    col = `hsl(${80 + i / ebf.length * 280}, 100%, 50%)`;
+    context.strokeStyle = col;
+    context.fillStyle = col;
+    context.lineTo(w * size + p, locateTds(ebf[i][1]));
+    context.font = '9pt Helvetica';
+    context.fillText(`EBF ${ebf[i][2]}%`, w * size + p + 5, locateTds(ebf[i][1]) + 3);
+    context.stroke();
+    context.closePath();
+  }
+
+};
 
 drawBoard();
 
 let sliders = document.getElementsByClassName('slider');
 for (let x = 0; x < sliders.length; x++) {
-  sliders[x].addEventListener('input', drawBoard);
+  sliders[x].addEventListener('focusout', drawBoard);
 }

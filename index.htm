@@ -1,6 +1,7 @@
 <html>
 
 <head>
+  <script src="ebf.js"></script>
   <style>
   *{
   font-family: helvetica;
@@ -47,7 +48,7 @@ input[type=text]{
   <h1>Espresso Brew Formula</h1>
   <div id="flex">
     <div class="container">
-      <canvas id="canvas" width="950px" height="950px" style="background: #fff;     magrin:20px;"></canvas>
+      <canvas id="canvas" width="950px" height="950px" style="background: #fff; margin:20px;"></canvas>
     </div>
     <div class="container">
       <form id="customize" action="#">
@@ -59,14 +60,14 @@ input[type=text]{
           <hr>
 
           <label for= "minextraction">
-          <input type="range" class="slider" name="minextraction" min=14 max=25 value=18 />min. extraction [%]</label>
+          <input type="text" class="slider" name="minextraction" min="14" max="25" value="18" require />min. extraction [%]</label>
 
           <label for= "maxextraction">
-          <input type="range" class="slider" name="maxextraction" min=14 max=25 value=22 />max. extraction [%]</label>
+          <input type="text" class="slider" name="maxextraction" min="14" max="25" value="22" require />max. extraction [%]</label>
 
           <hr>
-          <label for="mintds"><input type="range" class="slider" name="mintds" min=2 max=20 value=8 />min. TDS [%]</label>
-          <label for="maxtds"><input type="range" class="slider" name="maxtds" min=2 max=20 value=12 />max. TDS [%]</label>
+          <label for="mintds"><input type="text" class="slider" name="mintds" min="2" max="20" value="8" require />min. TDS [%]</label>
+          <label for="maxtds"><input type="text" class="slider" name="maxtds" min="2" max="20" value="12" require />max. TDS [%]</label>
         </div>
 
       </form>
