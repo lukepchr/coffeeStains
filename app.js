@@ -13,6 +13,11 @@ canvas.width = w * size + 2 * p;
 canvas.textAlign = 'left';
 context.lineWidth = 0.3;
 
+
+let locateExt = (pp) => {return (pp - 14) * size + p;};
+
+let locateTds = (pp) => {return (20 - pp) * size + p;};
+
 function drawBoard() {
   let espressobox = document.getElementById('espressobox').checked;
   let minEx = document.getElementsByName('minextraction')[0].value;
@@ -29,31 +34,15 @@ function drawBoard() {
   context.fillText('extraction [%]', size * w / 2, (h + 1) * size + p);
   context.closePath();
 
-  context.fillStyle = '#999'; // Ristretto
-  context.fillRect(p + 4 * size, p + 2 * size, 3 * size, 6 * size);
-
-  context.font = '16pt Helvetica';
-  context.fillStyle = 'black';
-  context.fillText('Ristretto', p + 4.5 * size, p + 5.4 * size);
-
-  if(espressobox){
+  if (espressobox) {
     context.beginPath();
     context.fillStyle = 'orange'; // Espresso
-    context.fillRect(p + (minEx - 14) * size, p + (20 - maxTds) * size, (maxEx - minEx) * size, (maxTds - minTds) * size);
+    context.fillRect(locateExt(minEx), locateTds(minTds),
+      locateExt(maxEx) - locateExt(minEx),
+      locateTds(maxTds) - locateTds(minTds));
     context.fillStyle = 'black';
-
-  context.closePath();
-}
-
-
-  context.fillStyle = '#999'; // Espresso
-  context.fillRect(p + 4 * size, p + 12 * size, 3 * size, 3 * size);
-
-  context.fillStyle = 'black';
-  context.fillText('Lungo', p + 4.8 * size, p + 13.7 * size);
-
-  context.stroke();
-  context.closePath();
+    context.closePath();
+  }
 
   // plot the horizontal lines
   for (let x = 0; x <= w; x++) {
