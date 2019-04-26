@@ -1,24 +1,41 @@
-var w = 11; // plotting
-var h = 18; // plotting
-var p = 70; // padding
-var size = 40;
-
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
-
-canvas.width = canvas.width;
-
-canvas.height = h * size + 2 * p;
-canvas.width = w * size + 2 * p;
-canvas.textAlign = 'left';
-context.lineWidth = 0.8;
+let w = 11; // plotting
+let h = 18; // plotting
+let p = 70; // padding
+let size = 40;
 
 // convert the extraction [%] value into position on the grid
 let locateExt = (pp = 20) => {return (pp - 14) * size + p;};
 // convert the TDS [%] value into position on the grid
 let locateTds = (pp = 8) => {return (20 - pp) * size + p;};
 
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+
+let brewFormula = () => {
+  //plot ebf
+  for (let i = 0; i < ebf.length; i++)
+  {
+    context.beginPath();
+    context.moveTo(p, locateTds(ebf[i][0]));
+    col = `hsl(${80 + i / ebf.length * 280}, 100%, 50%)`;
+    context.strokeStyle = col;
+    context.fillStyle = col;
+    context.lineTo(w * size + p, locateTds(ebf[i][1]));
+    context.font = '9pt Helvetica';
+    context.fillText(`EBF ${ebf[i][2]}%`, p + (w + 1) * size, locateTds(ebf[i][1]) + 3);
+    context.stroke();
+    context.closePath();
+  }
+};
+
 let drawBoard = () => {
+
+  canvas.width = canvas.width;
+
+  canvas.height = h * size + 2 * p;
+  canvas.width = w * size + 2 * p;
+  canvas.textAlign = 'left';
+  context.lineWidth = 0.8;
   let box1title = document.getElementById('name').value;
   let espressobox = document.getElementById('espressobox').checked;
   let minEx = document.getElementsByName('minextraction')[0].value;
@@ -138,20 +155,7 @@ let drawBoard = () => {
     context.closePath();
   }
 
-  //plot ebf
-  for (let i = 0; i < ebf.length; i++)
-  {
-    context.beginPath();
-    context.moveTo(p, locateTds(ebf[i][0]));
-    col = `hsl(${80 + i / ebf.length * 280}, 100%, 50%)`;
-    context.strokeStyle = col;
-    context.fillStyle = col;
-    context.lineTo(w * size + p, locateTds(ebf[i][1]));
-    context.font = '9pt Helvetica';
-    context.fillText(`EBF ${ebf[i][2]}%`, 515, locateTds(ebf[i][1]) + 3);
-    context.stroke();
-    context.closePath();
-  }
+
 
   context.beginPath();
   context.fillStyle = 'blue';
@@ -162,11 +166,20 @@ let drawBoard = () => {
   context.fillText("boxe", xAvg, yAvg);
   context.stroke();
     context.closePath();
+
+  if (document.getElementById("ebfcheck").checked){
+    brewFormula();
+  }
+
 };
 
 drawBoard();
 
-let sliders = document.getElementsByClassName('slider');
-for (let x = 0; x < sliders.length; x++) {
-  sliders[x].addEventListener('focusout', drawBoard);
+let fields = document.getElementsByClassName('field');
+for (let x = 0; x < fields.length; x++) {
+  fields[x].addEventListener('focusout', drawBoard);
+}
+  let checkboxes = document.getElementsByClassName('checkbox');
+  for (let x = 0; x < checkboxes.length; x++) {
+    checkboxes[x].addEventListener('input', drawBoard);
 }

@@ -1,7 +1,10 @@
+<!DOCTYPE html>
+
 <html>
 
 <head>
   <script src="ebf.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
   *{
   font-family: helvetica;
@@ -11,14 +14,19 @@ body{
 
   background-color: white;
   text-align: center;
+
+}
+label{
+  font-size: 0.9em;
 }
 .box{
   display: flex;
   flex-direction: column;
   text-align: left;
   border: 1px solid #999;
-  border-radius: 3px;
+  border-radius: 10px;
   padding: 15px;
+  margin:1px;
 }
 h1{
   margin: 0;
@@ -36,9 +44,10 @@ h1{
   padding-top: 45px;
 }
 
-input[type=text]{
+input[type=text].n{
   padding: 5px;
   margin-right: 5px;
+  width: 30px;
 }
 
 
@@ -52,23 +61,37 @@ input[type=text]{
       <canvas id="canvas" width="950px" height="950px" style="background: #fff; margin:20px;"></canvas>
     </div>
     <div class="container">
+
       <form id="customize" action="#">
+        <div class="box">Features1</div>
+        <div class="box"><h4>Helper lines</h4>
+
+        <label for="ebf">
+          <input type="radio" class="checkbox" name="ebf" id="ebfcheck" value="ebf" checked>Espresso brew formula
+        </label>
+
+        <label for="none">
+          <input type="radio" class="checkbox" name="ebf" id="ebfcheck" value="none">None
+        </label>
+
+      </div>
         <div id="box1" class="box">
+
           <div class="level">
-            <input id="espressobox" type="checkbox" name="active" checked/>
+            <input id="espressobox" type="checkbox" class="checkbox" name="active" checked/>
             <input type="text" name="Name" id="name" value="Espresso"/>
           </div>
           <hr>
 
           <label for= "minextraction">
-          <input type="text" class="slider" name="minextraction" min="14" max="25" value="18" require />min. extraction [%]</label>
+          <input type="text" class="field n" name="minextraction" min="14" max="25" value="18" require />min. extraction [%]</label>
 
           <label for= "maxextraction">
-          <input type="text" class="slider" name="maxextraction" min="14" max="25" value="22" require />max. extraction [%]</label>
+          <input type="text" class="field n" name="maxextraction" min="14" max="25" value="22" require />max. extraction [%]</label>
 
           <hr>
-          <label for="mintds"><input type="text" class="slider" name="mintds" min="2" max="20" value="8" require />min. TDS [%]</label>
-          <label for="maxtds"><input type="text" class="slider" name="maxtds" min="2" max="20" value="12" require />max. TDS [%]</label>
+          <label for="mintds"><input type="text" class="field n" name="mintds" min="2" max="20" value="8" require />min. TDS [%]</label>
+          <label for="maxtds"><input type="text" class="field n" name="maxtds" min="2" max="20" value="12" require />max. TDS [%]</label>
         </div>
 
       </form>
