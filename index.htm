@@ -6,7 +6,7 @@
   <script src="ebf.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-  *{
+    *{
   font-family: helvetica;
 
 }
@@ -16,41 +16,54 @@ body{
   text-align: center;
 
 }
+
 label{
   font-size: 0.9em;
+}
+
+h2{
+  margin-top: 0;
 }
 .box{
   display: flex;
   flex-direction: column;
   text-align: left;
-  border: 1px solid #999;
+  border: 0.5px dotted #999;
   border-radius: 10px;
   padding: 15px;
-  margin:1px;
+  margin:3px;
+
 }
 
 canvas{
   border: 1px solid black;
-  width: 50vw;
+  height: 90vh;
 }
+
 
 h1{
   margin: 0;
   padding: 0;
 }
+h2{
+  margin-bottom: 10px;
+  font-size: 1em;
+}
 #customize{
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+
 }
 
 #flex{
   display: flex;
-}
-#customize{
-  padding-top: 45px;
+  align-items: flex-start;
+
 }
 
-input[type=text].n{
+
+input[type=number]{
   padding: 5px;
   margin-right: 5px;
   width: 30px;
@@ -61,44 +74,85 @@ input[type=text].n{
 </head>
 
 <body>
-  <h1>Espresso Brew Formula</h1>
+
   <div id="flex">
     <div class="container">
-      <canvas id="canvas" width="950px" height="950px" style="background: #fff; margin:20px;"></canvas>
+      <canvas id="canvas" class="box" width="950px" height="950px" style="background: #fff;"></canvas>
     </div>
     <div class="container">
 
       <form id="customize" action="#">
-        <div class="box">Features1</div>
-        <div class="box"><h4>Helper lines</h4>
 
-        <label for="ebf">
-          <input type="radio" class="checkbox" name="ebf" id="ebfcheck" value="ebf" checked>Espresso brew formula
-        </label>
+        <div class="box">
+          <h2>Helper lines</h2>
 
-        <label for="none">
-          <input type="radio" class="checkbox" name="ebf" id="ebfcheck" value="none">None
-        </label>
+          <label for="ebf">
+            <input type="radio" class="checkbox" name="ebf" id="ebfcheck" value="ebf" checked>Espresso brew formula
+          </label>
 
-      </div>
-        <div id="box1" class="box">
+          <label for="none">
+            <input type="radio" class="checkbox" name="ebf" id="ebfcheck" value="none">None
+          </label>
+
+        </div>
+
+        <div class="box">
 
           <div class="level">
-            <input id="espressobox" type="checkbox" class="checkbox" name="active" checked/>
-            <input type="text" name="Name" id="name" value="Espresso"/>
+            <input id="espressobox1" type="checkbox" class="checkbox" name="active" checked />
+            <input type="text" name="Name" id="name1" value="Espresso" />
           </div>
+
+
+          <label for="minextraction">
+            <input type="number" class="field ext" name="minextraction1" min="14" max="25" value="18" require />min. extraction [%]</label>
+
+          <label for="maxextraction">
+            <input type="number" class="field ext" name="maxextraction1" min="14" max="25" value="22" require />max. extraction [%]</label>
+
           <hr>
-
-          <label for= "minextraction">
-          <input type="text" class="field n" name="minextraction" min="14" max="25" value="18" require />min. extraction [%]</label>
-
-          <label for= "maxextraction">
-          <input type="text" class="field n" name="maxextraction" min="14" max="25" value="22" require />max. extraction [%]</label>
-
-          <hr>
-          <label for="mintds"><input type="text" class="field n" name="mintds" min="2" max="20" value="8" require />min. TDS [%]</label>
-          <label for="maxtds"><input type="text" class="field n" name="maxtds" min="2" max="20" value="12" require />max. TDS [%]</label>
+          <label for="mintds"><input type="number" class="field tds" name="mintds1" min="2" max="20" value="8" require />min. TDS [%]</label>
+          <label for="maxtds"><input type="number" class="field tds" name="maxtds1" min="2" max="20" value="12" require />max. TDS [%]</label>
         </div>
+
+        <div class="box">
+
+          <div class="level">
+            <input id="espressobox2" type="checkbox" class="checkbox" name="active" checked />
+            <input type="text" name="Name" id="name2" value="Ristretto" />
+          </div>
+
+
+          <label for="minextraction2">
+            <input type="number" class="field ext" name="minextraction2" min="14" max="25" value="18" require />min. extraction [%]</label>
+
+          <label for="maxextraction">
+            <input type="number" class="field ext" name="maxextraction2" min="14" max="25" value="22" require />max. extraction [%]</label>
+
+
+          <label for="mintds"><input type="number" class="field tds" name="mintds2" min="2" max="20" value="12" require />min. TDS [%]</label>
+          <label for="maxtds"><input type="number" class="field tds" name="maxtds2" min="2" max="20" value="18" require />max. TDS [%]</label>
+        </div>
+
+        <div class="box">
+
+          <div class="level">
+            <input id="espressobox3" type="checkbox" class="checkbox" name="active" checked />
+            <input type="text" name="Name" id="name3" value="Lungo" />
+          </div>
+
+
+          <label for="minextraction">
+            <input type="number" class="field ext" name="minextraction3" min="14" max="25" value="18" require />min. extraction [%]</label>
+
+          <label for="maxextraction">
+            <input type="number" class="field ext" name="maxextraction3" min="14" max="25" value="22" require />max. extraction [%]</label>
+
+          <hr>
+          <label for="mintds"><input type="number" class="field tds" name="mintds3" min="2" max="20" value="5" require />min. TDS [%]</label>
+          <label for="maxtds"><input type="number" class="field tds" name="maxtds3" min="2" max="20" value="8" require />max. TDS [%]</label>
+        </div>
+
 
       </form>
 

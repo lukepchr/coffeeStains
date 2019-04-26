@@ -3,32 +3,75 @@ let h = 18; // plotting
 let p = 70; // padding
 let size = 40;
 let defaultLine = 0.8;
-let box1title = document.getElementById('name').value;
-let espressobox = document.getElementById('espressobox').checked;
-let minEx = document.getElementsByName('minextraction')[0].value;
-let maxEx = document.getElementsByName('maxextraction')[0].value;
-let minTds = document.getElementsByName('mintds')[0].value;
-let maxTds = document.getElementsByName('maxtds')[0].value;
+
+//values for box 1
+let espressobox1;
+let boxtitle1;
+let minEx1;
+let maxEx1;
+let minTds1;
+let maxTds1;
+
+//values for box 2
+let espressobox2;
+let boxtitle2;
+let minEx2;
+let maxEx2;
+let minTds2;
+let maxTds2;
+
+//values for box 3
+let espressobox3;
+let boxtitle3;
+let minEx3;
+let maxEx3;
+let minTds3;
+let maxTds3;
+
+let refresh = () => {
+  //values for box 1
+   espressobox1 = document.getElementById('espressobox1').checked;
+   boxtitle1 = document.getElementById('name1').value;
+   minEx1 = document.getElementsByName('minextraction1')[0].value;
+   maxEx1 = document.getElementsByName('maxextraction1')[0].value;
+   minTds1 = document.getElementsByName('mintds1')[0].value;
+   maxTds1 = document.getElementsByName('maxtds1')[0].value;
+
+  //values for box 2
+   espressobox2 = document.getElementById('espressobox2').checked;
+   boxtitle2 = document.getElementById('name2').value;
+   minEx2 = document.getElementsByName('minextraction2')[0].value;
+   maxEx2 = document.getElementsByName('maxextraction2')[0].value;
+   minTds2 = document.getElementsByName('mintds2')[0].value;
+   maxTds2 = document.getElementsByName('maxtds2')[0].value;
+
+  //values for box 3
+   espressobox3 = document.getElementById('espressobox3').checked;
+   boxtitle3 = document.getElementById('name3').value;
+   minEx3 = document.getElementsByName('minextraction3')[0].value;
+   maxEx3 = document.getElementsByName('maxextraction3')[0].value;
+   minTds3 = document.getElementsByName('mintds3')[0].value;
+   maxTds3 = document.getElementsByName('maxtds3')[0].value;
+};
 
 // convert the extraction [%] value into position on the grid
-let locateExt = (pp = 20) => {return (pp - 14) * size + p;};
+let locateExt = (pp = 20) => {
+  return (pp - 14) * size + p;
+};
 // convert the TDS [%] value into position on the grid
-let locateTds = (pp = 8) => {return (20 - pp) * size + p;};
+let locateTds = (pp = 8) => {
+  return (20 - pp) * size + p;
+};
 
-var canvas = document.getElementById('canvas');
+let canvas = document.getElementById('canvas');
 canvas.height = 2 * (h * size + 2 * p);
 canvas.width = 2 * (w * size + 2 * p);
-
-
-var context = canvas.getContext('2d');
-context.scale(2,2);
-
-
+let context = canvas.getContext('2d');
+context.scale(2, 2);
 
 let brewFormula = () => {
   //plot ebf
-  for (let i = 0; i < ebf.length; i++)
-  {
+  for (let i = 0; i < ebf.length; i++) {
     context.beginPath();
     context.moveTo(p, locateTds(ebf[i][0]));
     col = `hsl(${80 + i / ebf.length * 280}, 100%, 50%)`;
@@ -44,83 +87,17 @@ let brewFormula = () => {
 };
 
 let drawBoard = () => {
-
-
-
-
+  refresh();
   context.lineWidth = defaultLine;
   canvas.textAlign = 'center';
-   box1title = document.getElementById('name').value;
-   espressobox = document.getElementById('espressobox').checked;
-   minEx = document.getElementsByName('minextraction')[0].value;
-   maxEx = document.getElementsByName('maxextraction')[0].value;
-   minTds = document.getElementsByName('mintds')[0].value;
-   maxTds = document.getElementsByName('maxtds')[0].value;
+  box1title1 = document.getElementById('name1').value;
+  espressobox1 = document.getElementById('espressobox1').checked;
+  minEx1 = document.getElementsByName('minextraction1')[0].value;
+  maxEx1 = document.getElementsByName('maxextraction1')[0].value;
+  minTds1 = document.getElementsByName('mintds1')[0].value;
+  maxTds1 = document.getElementsByName('maxtds1')[0].value;
 
-  if (minEx < 14) {
-    minEx = 14;
-    document.getElementsByName('minextraction')[0].value = minEx;
-    if (minEx == maxEx) {
-      document.getElementsByName('maxextraction')[0].value = ++maxEx;
-    }
-  }
 
-  if (minEx > 25) {
-    minEx = 25;
-
-    if (minEx == maxEx) {
-      minEx--;
-    }
-    document.getElementsByName('minextraction')[0].value = minEx;
-  }
-
-  if (maxEx < 14) {
-    maxEx = 15;
-    document.getElementsByName('maxextraction')[0].value = maxEx;
-    if (minEx == maxEx) {
-      document.getElementsByName('minextraction')[0].value = --minEx;
-    }
-  }
-
-  if (maxEx > 25) {
-    maxEx = 25;
-    document.getElementsByName('maxextraction')[0].value = maxEx;
-    if (minEx == maxEx) {
-      document.getElementsByName('minextraction')[0].value = --minEx;
-    }
-  }
-
-  if (minTds < 2) {
-    minTds = 2;
-    document.getElementsByName('mintds')[0].value = minTds;
-    if (minTds == maxTds) {
-      document.getElementsByName('maxtds')[0].value = ++maxTds;
-    }
-  }
-
-  if (minTds > 20) {
-    minTds = 19;
-    document.getElementsByName('mintds')[0].value = minTds;
-    if (minTds == maxTds) {
-      document.getElementsByName('maxtds')[0].value = ++maxTds;
-    }
-  }
-
-  if (maxTds < 2) {
-    maxTds = 3;
-    document.getElementsByName('maxtds')[0].value = maxTds;
-    if (minTds == maxTds){
-      document.getElementsByName('mintds')[0].value = --minTds;
-    }
-  }
-
-  if (maxTds > 20) {
-    maxTds = 20;
-    document.getElementsByName('maxtds')[0].value = maxTds;
-    if (minTds == maxTds) {
-      document.getElementsByName('mintds')[0].value = --minTds;
-    }
-  }
 
   context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -129,10 +106,10 @@ let drawBoard = () => {
   context.strokeStyle = 'black';
   context.fillStyle = 'black';
   context.fillText('[%TDS]', 0.5 * p, p - 22);
-  context.fillText('Extraction [%]', size * w / 2 + 10, (h + 1) * size + p + 10);
+  let txt = 'Extraction [%]';
+  context.fillText(txt, size * w / 2 + p - context.measureText(txt).width / 2,
+    (h + 1) * size + p + 10);
   context.closePath();
-
-
 
   // plot the horizontal lines
   for (let x = 0; x <= w; x++) {
@@ -162,9 +139,17 @@ let drawBoard = () => {
   }
 
 
-  if (document.getElementById("espressobox").checked){
-    espressoBox();
+  if (document.getElementById("espressobox1").checked) {
+    espressoBox(boxtitle1, minEx1, maxEx1, minTds1, maxTds1, "green");
   }
+  if (document.getElementById("espressobox2").checked) {
+    espressoBox(boxtitle2, minEx2, maxEx2, minTds2, maxTds2, "orange");
+  }
+  if (document.getElementById("espressobox3").checked) {
+    espressoBox(boxtitle3, minEx3, maxEx3, minTds3, maxTds3, "yellow");
+  }
+
+
 
   if (document.getElementById("ebfcheck").checked) {
     brewFormula();
@@ -174,46 +159,50 @@ let drawBoard = () => {
 
 };
 
-let espressoBox = () => {
-    context.globalAlpha = 0.7;
-    context.beginPath();
-    context.fillStyle = 'orange'; // Espresso
-    context.lineStyle= 'orange';
-    context.lineWidth = 1;
-    context.strokeRect(locateExt(minEx)  , locateTds(minTds) ,
-      locateExt(maxEx) - locateExt(minEx) ,
-      locateTds(maxTds) - locateTds(minTds) );
-    context.fillRect(locateExt(minEx), locateTds(minTds),
-      locateExt(maxEx) - locateExt(minEx),
-      locateTds(maxTds) - locateTds(minTds));
+let espressoBox = (txt, minEx, maxEx, minTds, maxTds, color) => {
+  context.globalAlpha = 0.65;
+  context.beginPath();
+  context.fillStyle = color; // Espresso
+  context.lineStyle = color;
+  context.lineWidth = 1;
+  context.strokeRect(locateExt(minEx), locateTds(minTds),
+    locateExt(maxEx) - locateExt(minEx),
+    locateTds(maxTds) - locateTds(minTds));
+  context.fillRect(locateExt(minEx), locateTds(minTds),
+    locateExt(maxEx) - locateExt(minEx),
+    locateTds(maxTds) - locateTds(minTds));
 
-      let textWidth = context.measureText(txt).width;
-      let boxWidth = locateExt(maxEx) - locateExt(minEx);
-        var txt = box1title;
-        context.font = '20pt Helvetica';
+  let textWidth = context.measureText(txt).width;
+  let boxWidth = locateExt(maxEx) - locateExt(minEx);
 
-let i = 20;
 
-do{
+  let i = 20; // Default Font size
+
+  context.font = `${i}pt Helvetica`;
+
+  do {
     textWidth = context.measureText(txt).width;
     boxWidth = locateExt(maxEx) - locateExt(minEx);
     context.font = `${i}pt Helvetica`;
-    i-=0.5
-}
-while(textWidth > boxWidth);
-
-let xMiddle = ((locateExt(maxEx) + locateExt(minEx))/2) - (context.measureText(txt).width)/2;
-let yMiddle = ((locateTds(maxTds) + locateTds(minTds))/2 + 8);
-
-    context.strokeText(txt, xMiddle, yMiddle);
-
-    context.closePath();
-    context.lineWidth = defaultLine;
-    context.fillStyle = 'black';
-    context.globalAlpha = 1;
+    i -= 0.5;
   }
 
+  while (textWidth > boxWidth);
+
+  let xMiddle = ((locateExt(maxEx) + locateExt(minEx)) / 2) - (context.measureText(txt).width) / 2;
+  let yMiddle = ((locateTds(maxTds) + locateTds(minTds)) / 2 + 8);
+
+  context.strokeText(txt, xMiddle, yMiddle);
+
+  context.closePath();
+  context.lineWidth = defaultLine;
+  context.fillStyle = 'black';
+  context.globalAlpha = 1;
+}
+
 drawBoard();
+
+// add event listeners to react to input
 
 let fields = document.getElementsByClassName('field');
 for (let x = 0; x < fields.length; x++) {
