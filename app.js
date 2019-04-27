@@ -1,3 +1,5 @@
+
+
 let w = 11; // width in squares
 let h = 18; // height in squares
 let p = 70; // padding
@@ -28,43 +30,17 @@ let maxEx3;
 let minTds3;
 let maxTds3;
 
-let refresh = () => {
-  //values for box 1
-  espressobox1 = document.getElementById('espressobox1').checked;
-  boxtitle1 = document.getElementById('name1').value;
-  minEx1 = document.getElementsByName('minextraction1')[0].value;
-  maxEx1 = document.getElementsByName('maxextraction1')[0].value;
-  minTds1 = document.getElementsByName('mintds1')[0].value;
-  maxTds1 = document.getElementsByName('maxtds1')[0].value;
-
-  //values for box 2
-  espressobox2 = document.getElementById('espressobox2').checked;
-  boxtitle2 = document.getElementById('name2').value;
-  minEx2 = document.getElementsByName('minextraction2')[0].value;
-  maxEx2 = document.getElementsByName('maxextraction2')[0].value;
-  minTds2 = document.getElementsByName('mintds2')[0].value;
-  maxTds2 = document.getElementsByName('maxtds2')[0].value;
-
-  //values for box 3
-  espressobox3 = document.getElementById('espressobox3').checked;
-  boxtitle3 = document.getElementById('name3').value;
-  minEx3 = document.getElementsByName('minextraction3')[0].value;
-  maxEx3 = document.getElementsByName('maxextraction3')[0].value;
-  minTds3 = document.getElementsByName('mintds3')[0].value;
-  maxTds3 = document.getElementsByName('maxtds3')[0].value;
-};
-
-// convert the extraction [%] value into position on the grid
-let locateExt = (pp = 20) => { return (pp - 14) * size + p; };
-
-// convert the TDS [%] value into position on the grid
-let locateTds = (pp = 8) => { return (20 - pp) * size + p; };
-
 let canvas = document.getElementById('canvas');
 canvas.height = 2 * (h * size + 2 * p);
 canvas.width = 2 * (w * size + 2 * p);
 let context = canvas.getContext('2d');
 context.scale(2, 2);
+
+let locateExt = (pp = 20) => { return (pp - 14) * size + p; };
+// convert the extraction [%] value into position on the grid
+
+let locateTds = (pp = 8) => { return (20 - pp) * size + p; };
+// convert the TDS [%] value into position on the grid
 
 let brewFormula = () => {
   //plot ebf
@@ -200,6 +176,32 @@ let espressoBox = (txt, minEx, maxEx, minTds, maxTds, color) => {
   context.fillStyle = 'black';
   context.globalAlpha = 1;
 
+};
+
+let refresh = () => {
+  //values for box 1
+  espressobox1 = document.getElementById('espressobox1').checked;
+  boxtitle1 = document.getElementById('name1').value;
+  minEx1 = document.getElementsByName('minextraction1')[0].value;
+  maxEx1 = document.getElementsByName('maxextraction1')[0].value;
+  minTds1 = document.getElementsByName('mintds1')[0].value;
+  maxTds1 = document.getElementsByName('maxtds1')[0].value;
+
+  //values for box 2
+  espressobox2 = document.getElementById('espressobox2').checked;
+  boxtitle2 = document.getElementById('name2').value;
+  minEx2 = document.getElementsByName('minextraction2')[0].value;
+  maxEx2 = document.getElementsByName('maxextraction2')[0].value;
+  minTds2 = document.getElementsByName('mintds2')[0].value;
+  maxTds2 = document.getElementsByName('maxtds2')[0].value;
+
+  //values for box 3
+  espressobox3 = document.getElementById('espressobox3').checked;
+  boxtitle3 = document.getElementById('name3').value;
+  minEx3 = document.getElementsByName('minextraction3')[0].value;
+  maxEx3 = document.getElementsByName('maxextraction3')[0].value;
+  minTds3 = document.getElementsByName('mintds3')[0].value;
+  maxTds3 = document.getElementsByName('maxtds3')[0].value;
 };
 
 drawBoard();

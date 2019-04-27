@@ -1,7 +1,7 @@
 // ebf - coordinates for drawing EBF lines.
 // [0] position on the left as "the height" of TDS
 // [1] position on the right as the "height" of TDS
-// [2] value of EBF to use as a little label [%]
+// [2] value of EBF to use as the little label [%]
 
 let ebf = [
 [3.7, 6.24, 25],
