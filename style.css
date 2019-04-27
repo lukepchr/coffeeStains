@@ -1,0 +1,77 @@
+*{
+font-family: helvetica;
+
+}
+body{
+
+background-color: white;
+text-align: center;
+
+}
+
+label{
+font-size: 0.9em;
+}
+
+h2{
+margin-top: 0;
+}
+.box{
+display: flex;
+flex-direction: column;
+text-align: left;
+border: 0.5px dotted #999;
+border-radius: 10px;
+padding: 15px;
+margin:3px;
+width: 100%;
+
+}
+
+canvas{
+position: relative;
+
+height: 95vh;
+background: white;
+}
+
+
+h1{
+margin: 0;
+padding: 0;
+}
+h2{
+margin-bottom: 10px;
+font-size: 1em;
+}
+#customize{
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+
+
+}
+
+#flex{
+display: flex;
+align-items: flex-start;
+
+}
+
+#name1{
+border: 2px solid olivedrab;
+}
+#name2{
+border: 2px solid orange;
+}
+#name3{
+border: 2px solid skyblue;
+}
+
+
+input[type=number]{
+padding: 5px;
+margin: 5px;
+width: 30px;
+
+}

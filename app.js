@@ -1,8 +1,8 @@
-let w = 11; // plotting
-let h = 18; // plotting
+let w = 11; // width in squares
+let h = 18; // height in squares
 let p = 70; // padding
-let size = 40;
-let defaultLine = 0.8;
+let size = 40; // side of each square [px]
+let defaultLine = 0.8; // line width for plotting
 
 //values for box 1
 let espressobox1;
@@ -30,38 +30,35 @@ let maxTds3;
 
 let refresh = () => {
   //values for box 1
-   espressobox1 = document.getElementById('espressobox1').checked;
-   boxtitle1 = document.getElementById('name1').value;
-   minEx1 = document.getElementsByName('minextraction1')[0].value;
-   maxEx1 = document.getElementsByName('maxextraction1')[0].value;
-   minTds1 = document.getElementsByName('mintds1')[0].value;
-   maxTds1 = document.getElementsByName('maxtds1')[0].value;
+  espressobox1 = document.getElementById('espressobox1').checked;
+  boxtitle1 = document.getElementById('name1').value;
+  minEx1 = document.getElementsByName('minextraction1')[0].value;
+  maxEx1 = document.getElementsByName('maxextraction1')[0].value;
+  minTds1 = document.getElementsByName('mintds1')[0].value;
+  maxTds1 = document.getElementsByName('maxtds1')[0].value;
 
   //values for box 2
-   espressobox2 = document.getElementById('espressobox2').checked;
-   boxtitle2 = document.getElementById('name2').value;
-   minEx2 = document.getElementsByName('minextraction2')[0].value;
-   maxEx2 = document.getElementsByName('maxextraction2')[0].value;
-   minTds2 = document.getElementsByName('mintds2')[0].value;
-   maxTds2 = document.getElementsByName('maxtds2')[0].value;
+  espressobox2 = document.getElementById('espressobox2').checked;
+  boxtitle2 = document.getElementById('name2').value;
+  minEx2 = document.getElementsByName('minextraction2')[0].value;
+  maxEx2 = document.getElementsByName('maxextraction2')[0].value;
+  minTds2 = document.getElementsByName('mintds2')[0].value;
+  maxTds2 = document.getElementsByName('maxtds2')[0].value;
 
   //values for box 3
-   espressobox3 = document.getElementById('espressobox3').checked;
-   boxtitle3 = document.getElementById('name3').value;
-   minEx3 = document.getElementsByName('minextraction3')[0].value;
-   maxEx3 = document.getElementsByName('maxextraction3')[0].value;
-   minTds3 = document.getElementsByName('mintds3')[0].value;
-   maxTds3 = document.getElementsByName('maxtds3')[0].value;
+  espressobox3 = document.getElementById('espressobox3').checked;
+  boxtitle3 = document.getElementById('name3').value;
+  minEx3 = document.getElementsByName('minextraction3')[0].value;
+  maxEx3 = document.getElementsByName('maxextraction3')[0].value;
+  minTds3 = document.getElementsByName('mintds3')[0].value;
+  maxTds3 = document.getElementsByName('maxtds3')[0].value;
 };
 
 // convert the extraction [%] value into position on the grid
-let locateExt = (pp = 20) => {
-  return (pp - 14) * size + p;
-};
+let locateExt = (pp = 20) => { return (pp - 14) * size + p; };
+
 // convert the TDS [%] value into position on the grid
-let locateTds = (pp = 8) => {
-  return (20 - pp) * size + p;
-};
+let locateTds = (pp = 8) => { return (20 - pp) * size + p; };
 
 let canvas = document.getElementById('canvas');
 canvas.height = 2 * (h * size + 2 * p);
@@ -97,8 +94,6 @@ let drawBoard = () => {
   maxEx1 = document.getElementsByName('maxextraction1')[0].value;
   minTds1 = document.getElementsByName('mintds1')[0].value;
   maxTds1 = document.getElementsByName('maxtds1')[0].value;
-
-
 
   context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -139,24 +134,21 @@ let drawBoard = () => {
     context.closePath();
   }
 
-
-  if (document.getElementById("espressobox1").checked) {
-    espressoBox(boxtitle1, minEx1, maxEx1, minTds1, maxTds1, "olivedrab");
-  }
-  if (document.getElementById("espressobox2").checked) {
-    espressoBox(boxtitle2, minEx2, maxEx2, minTds2, maxTds2, "orange");
-  }
-  if (document.getElementById("espressobox3").checked) {
-    espressoBox(boxtitle3, minEx3, maxEx3, minTds3, maxTds3, "skyblue");
+  if (document.getElementById('espressobox1').checked) {
+    espressoBox(boxtitle1, minEx1, maxEx1, minTds1, maxTds1, 'olivedrab');
   }
 
+  if (document.getElementById('espressobox2').checked) {
+    espressoBox(boxtitle2, minEx2, maxEx2, minTds2, maxTds2, 'orange');
+  }
 
+  if (document.getElementById('espressobox3').checked) {
+    espressoBox(boxtitle3, minEx3, maxEx3, minTds3, maxTds3, 'skyblue');
+  }
 
-  if (document.getElementById("ebfcheck").checked) {
+  if (document.getElementById('ebfcheck').checked) {
     brewFormula();
   }
-
-
 
 };
 
@@ -171,20 +163,18 @@ let espressoBox = (txt, minEx, maxEx, minTds, maxTds, color) => {
   context.strokeRect(locateExt(minEx), locateTds(minTds),
     locateExt(maxEx) - locateExt(minEx),
     locateTds(maxTds) - locateTds(minTds));
-context.globalAlpha = 0.3;
-   context.fillRect(locateExt(minEx), locateTds(minTds),
-     locateExt(maxEx) - locateExt(minEx),
-     locateTds(maxTds) - locateTds(minTds));
-context.globalAlpha = 1;
-  context.strokeStyle = "black";
+  context.globalAlpha = 0.3;
+  context.fillRect(locateExt(minEx), locateTds(minTds),
+    locateExt(maxEx) - locateExt(minEx),
+    locateTds(maxTds) - locateTds(minTds));
+  context.globalAlpha = 1;
+  context.strokeStyle = 'black';
   context.lineWidth = 1;
   context.strokeRect(locateExt(minEx), locateTds(minTds),
     locateExt(maxEx) - locateExt(minEx),
     locateTds(maxTds) - locateTds(minTds));
   let textWidth = context.measureText(txt).width;
   let boxWidth = locateExt(maxEx) - locateExt(minEx);
-
-
   let i = 20; // Default Font size
 
   context.font = `${i}pt Helvetica`;
@@ -199,8 +189,8 @@ context.globalAlpha = 1;
   while (textWidth > boxWidth);
 
   let xMiddle = ((locateExt(maxEx) + locateExt(minEx)) / 2) - (context.measureText(txt).width) / 2;
-  let yMiddle = ((locateTds(maxTds) + locateTds(minTds)) / 2 + 8);
 
+  let yMiddle = ((locateTds(maxTds) + locateTds(minTds)) / 2 + 8);
 
   context.fillText(txt, xMiddle, yMiddle);
   context.lineWidth = 0.9;
@@ -210,18 +200,25 @@ context.globalAlpha = 1;
   context.fillStyle = 'black';
   context.globalAlpha = 1;
 
-}
+};
 
 drawBoard();
 
 // add event listeners to react to input
 
+// all text/number fields on "focus out"
 let fields = document.getElementsByClassName('field');
 for (let x = 0; x < fields.length; x++) {
   fields[x].addEventListener('focusout', drawBoard);
 }
 
+//
 let checkboxes = document.getElementsByClassName('checkbox');
 for (let x = 0; x < checkboxes.length; x++) {
   checkboxes[x].addEventListener('input', drawBoard);
+}
+
+let numberfields = document.getElementsByClassName('tds');
+for (let x = 0; x < numberfields.length; x++) {
+  numberfields[x].addEventListener('click', drawBoard);
 }
