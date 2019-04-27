@@ -89,19 +89,6 @@ let brewFormula = () => {
 let drawBoard = () => {
   refresh();
 
-
-
-  let img = new Image();
-  img.onload = function() {
-
-
-    context.scale(0.09, 0.09);
-
-    context.drawImage(img, 10* p + size * w * 9, size*w*18.65 );
-
-  }
-  img.src="stains.svg";
-
   context.lineWidth = defaultLine;
   canvas.textAlign = 'center';
   box1title1 = document.getElementById('name1').value;
@@ -222,6 +209,7 @@ context.globalAlpha = 1;
   context.lineWidth = defaultLine;
   context.fillStyle = 'black';
   context.globalAlpha = 1;
+
 }
 
 drawBoard();

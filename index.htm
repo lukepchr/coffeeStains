@@ -32,12 +32,14 @@ h2{
   border-radius: 10px;
   padding: 15px;
   margin:3px;
+  width: 100%;
 
 }
 
 canvas{
-  border: 1px solid black;
-  height: 90vh;
+  position: relative;
+
+  height: 95vh;
   background: white;
 }
 
@@ -54,6 +56,7 @@ h2{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
 
 }
 
@@ -89,7 +92,7 @@ input[type=number]{
 
   <div id="flex">
     <div class="container">
-      <canvas id="canvas" class="box" width="950px" height="950px" style="background: #fff;"></canvas>
+      <canvas id="canvas"></canvas>
     </div>
     <div class="container">
 
