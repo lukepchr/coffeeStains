@@ -1,5 +1,3 @@
-
-
 let w = 11; // width in squares
 let h = 18; // height in squares
 let p = 70; // padding
@@ -36,10 +34,14 @@ canvas.width = 2 * (w * size + 2 * p);
 let context = canvas.getContext('2d');
 context.scale(2, 2);
 
-let locateExt = (pp = 20) => { return (pp - 14) * size + p; };
+let locateExt = (pp = 20) => {
+  return (pp - 14) * size + p;
+};
 // convert the extraction [%] value into position on the grid
 
-let locateTds = (pp = 8) => { return (20 - pp) * size + p; };
+let locateTds = (pp = 8) => {
+  return (20 - pp) * size + p;
+};
 // convert the TDS [%] value into position on the grid
 
 let brewFormula = () => {
@@ -60,16 +62,9 @@ let brewFormula = () => {
 };
 
 let drawBoard = () => {
-  refresh();
 
   context.lineWidth = defaultLine;
   canvas.textAlign = 'center';
-  box1title1 = document.getElementById('name1').value;
-  espressobox1 = document.getElementById('espressobox1').checked;
-  minEx1 = document.getElementsByName('minextraction1')[0].value;
-  maxEx1 = document.getElementsByName('maxextraction1')[0].value;
-  minTds1 = document.getElementsByName('mintds1')[0].value;
-  maxTds1 = document.getElementsByName('maxtds1')[0].value;
 
   context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -110,15 +105,18 @@ let drawBoard = () => {
     context.closePath();
   }
 
-  if (document.getElementById('espressobox1').checked) {
+  validate();
+  refresh();
+
+  if (espressobox1) {
     espressoBox(boxtitle1, minEx1, maxEx1, minTds1, maxTds1, 'olivedrab');
   }
 
-  if (document.getElementById('espressobox2').checked) {
+  if (espressobox2) {
     espressoBox(boxtitle2, minEx2, maxEx2, minTds2, maxTds2, 'orange');
   }
 
-  if (document.getElementById('espressobox3').checked) {
+  if (espressobox3) {
     espressoBox(boxtitle3, minEx3, maxEx3, minTds3, maxTds3, 'skyblue');
   }
 
@@ -204,7 +202,60 @@ let refresh = () => {
   maxTds3 = document.getElementsByName('maxtds3')[0].value;
 };
 
+// user-proof behaviour.
+let validate = () => {
+
+  // first check if TDS is within spec and change if necessary.
+  let alltds = document.getElementsByClassName('tds');
+  for (let i = 0; i < alltds.length; i++) {
+    let value = alltds[i].value;
+    if (value > 20) {
+      alltds[i].value = 20
+    };
+
+    if (value < 2) {
+      alltds[i].value = 2
+    };
+
+  }
+
+  // check extractions and change if necessary.
+  let allext = document.getElementsByClassName('ext');
+
+  for (let i = 0; i < allext.length; i++) {
+
+    let value = allext[i].value;
+
+    if (value > 25) {
+      allext[i].value = 25;
+    }
+
+    if (value < 14) {
+      allext[i].value = 14;
+    }
+
+  }
+
+  let min = document.getElementsByClassName('minext');
+  let max = document.getElementsByClassName('maxext');
+
+  for (let i = 0; i < min.length; i++) {
+    if (min[i].value > max[i].value) {
+      [min[i].value, max[i].value] = [max[i].value, min[i].value];
+    }
+    if (min[i].value == max[i].value) {
+      if (min[i].value >= 15) {
+        min[i].value--;
+      } else if (max[i].value <= 24) {
+        max[i].value++;
+      }
+    }
+  }
+};
+
+
 drawBoard();
+
 
 // add event listeners to react to input
 
@@ -221,6 +272,11 @@ for (let x = 0; x < checkboxes.length; x++) {
 }
 
 let numberfields = document.getElementsByClassName('tds');
+for (let x = 0; x < numberfields.length; x++) {
+  numberfields[x].addEventListener('click', drawBoard);
+}
+
+numberfields = document.getElementsByClassName('ext');
 for (let x = 0; x < numberfields.length; x++) {
   numberfields[x].addEventListener('click', drawBoard);
 }
