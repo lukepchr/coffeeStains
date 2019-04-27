@@ -62,11 +62,22 @@ h2{
 
 }
 
+#name1{
+  border: 2px solid olivedrab;
+}
+#name2{
+  border: 2px solid orange;
+}
+#name3{
+  border: 2px solid skyblue;
+}
+
 
 input[type=number]{
   padding: 5px;
-  margin-right: 5px;
+  margin: 5px;
   width: 30px;
+
 }
 
 
@@ -100,45 +111,44 @@ input[type=number]{
 
           <div class="level">
             <input id="espressobox1" type="checkbox" class="checkbox" name="active" checked />
-            <input type="text" name="Name" id="name1" value="Espresso" />
+            <input type="text" name="Name" class="field" id="name1" value="Espresso" required />
           </div>
 
 
           <label for="minextraction">
-            <input type="number" class="field ext" name="minextraction1" min="14" max="25" value="18" require />min. extraction [%]</label>
+            <input type="number" class="field ext" name="minextraction1" min="14" max="25" value="18" required />min. extraction [%]</label>
 
           <label for="maxextraction">
-            <input type="number" class="field ext" name="maxextraction1" min="14" max="25" value="22" require />max. extraction [%]</label>
+            <input type="number" class="field ext" name="maxextraction1" min="14" max="25" value="21" required />max. extraction [%]</label>
 
-          <hr>
-          <label for="mintds"><input type="number" class="field tds" name="mintds1" min="2" max="20" value="8" require />min. TDS [%]</label>
-          <label for="maxtds"><input type="number" class="field tds" name="maxtds1" min="2" max="20" value="12" require />max. TDS [%]</label>
+          <label for="mintds"><input type="number" class="field tds" name="mintds1" min="2" max="20" value="8" required />min. TDS [%]</label>
+          <label for="maxtds"><input type="number" class="field tds" name="maxtds1" min="2" max="20" value="12" required />max. TDS [%]</label>
         </div>
 
         <div class="box">
 
           <div class="level">
             <input id="espressobox2" type="checkbox" class="checkbox" name="active" checked />
-            <input type="text" name="Name" id="name2" value="Ristretto" />
+            <input type="text" class="field" name="Name" id="name2" value="Ristretto" required />
           </div>
 
 
           <label for="minextraction2">
-            <input type="number" class="field ext" name="minextraction2" min="14" max="25" value="18" require />min. extraction [%]</label>
+            <input type="number" class="field ext" name="minextraction2" min="14" max="25" value="18" required />min. extraction [%]</label>
 
           <label for="maxextraction">
-            <input type="number" class="field ext" name="maxextraction2" min="14" max="25" value="22" require />max. extraction [%]</label>
+            <input type="number" class="field ext" name="maxextraction2" min="14" max="25" value="21" required />max. extraction [%]</label>
 
 
-          <label for="mintds"><input type="number" class="field tds" name="mintds2" min="2" max="20" value="12" require />min. TDS [%]</label>
-          <label for="maxtds"><input type="number" class="field tds" name="maxtds2" min="2" max="20" value="18" require />max. TDS [%]</label>
+          <label for="mintds"><input type="number" class="field tds" name="mintds2" min="2" max="20" value="12" required />min. TDS [%]</label>
+          <label for="maxtds"><input type="number" class="field tds" name="maxtds2" min="2" max="20" value="18" required />max. TDS [%]</label>
         </div>
 
         <div class="box">
 
           <div class="level">
             <input id="espressobox3" type="checkbox" class="checkbox" name="active" checked />
-            <input type="text" name="Name" id="name3" value="Lungo" />
+            <input type="text" class="field" name="Name" id="name3" value="Lungo" required />
           </div>
 
 
@@ -146,9 +156,8 @@ input[type=number]{
             <input type="number" class="field ext" name="minextraction3" min="14" max="25" value="18" require />min. extraction [%]</label>
 
           <label for="maxextraction">
-            <input type="number" class="field ext" name="maxextraction3" min="14" max="25" value="22" require />max. extraction [%]</label>
+            <input type="number" class="field ext" name="maxextraction3" min="14" max="25" value="21" require />max. extraction [%]</label>
 
-          <hr>
           <label for="mintds"><input type="number" class="field tds" name="mintds3" min="2" max="20" value="5" require />min. TDS [%]</label>
           <label for="maxtds"><input type="number" class="field tds" name="maxtds3" min="2" max="20" value="8" require />max. TDS [%]</label>
         </div>

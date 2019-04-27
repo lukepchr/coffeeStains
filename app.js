@@ -140,13 +140,13 @@ let drawBoard = () => {
 
 
   if (document.getElementById("espressobox1").checked) {
-    espressoBox(boxtitle1, minEx1, maxEx1, minTds1, maxTds1, "green");
+    espressoBox(boxtitle1, minEx1, maxEx1, minTds1, maxTds1, "olivedrab");
   }
   if (document.getElementById("espressobox2").checked) {
     espressoBox(boxtitle2, minEx2, maxEx2, minTds2, maxTds2, "orange");
   }
   if (document.getElementById("espressobox3").checked) {
-    espressoBox(boxtitle3, minEx3, maxEx3, minTds3, maxTds3, "yellow");
+    espressoBox(boxtitle3, minEx3, maxEx3, minTds3, maxTds3, "skyblue");
   }
 
 
@@ -160,18 +160,26 @@ let drawBoard = () => {
 };
 
 let espressoBox = (txt, minEx, maxEx, minTds, maxTds, color) => {
-  context.globalAlpha = 0.65;
+
   context.beginPath();
+  context.globalAlpha = 0.8;
   context.fillStyle = color; // Espresso
-  context.lineStyle = color;
+  context.strokeStyle = color;
+  context.globalAlpha = 0.7;
+  context.lineWidth = 3;
+  context.strokeRect(locateExt(minEx), locateTds(minTds),
+    locateExt(maxEx) - locateExt(minEx),
+    locateTds(maxTds) - locateTds(minTds));
+context.globalAlpha = 0.3;
+   context.fillRect(locateExt(minEx), locateTds(minTds),
+     locateExt(maxEx) - locateExt(minEx),
+     locateTds(maxTds) - locateTds(minTds));
+context.globalAlpha = 1;
+  context.strokeStyle = "black";
   context.lineWidth = 1;
   context.strokeRect(locateExt(minEx), locateTds(minTds),
     locateExt(maxEx) - locateExt(minEx),
     locateTds(maxTds) - locateTds(minTds));
-  context.fillRect(locateExt(minEx), locateTds(minTds),
-    locateExt(maxEx) - locateExt(minEx),
-    locateTds(maxTds) - locateTds(minTds));
-
   let textWidth = context.measureText(txt).width;
   let boxWidth = locateExt(maxEx) - locateExt(minEx);
 
@@ -192,8 +200,10 @@ let espressoBox = (txt, minEx, maxEx, minTds, maxTds, color) => {
   let xMiddle = ((locateExt(maxEx) + locateExt(minEx)) / 2) - (context.measureText(txt).width) / 2;
   let yMiddle = ((locateTds(maxTds) + locateTds(minTds)) / 2 + 8);
 
-  context.strokeText(txt, xMiddle, yMiddle);
 
+  context.fillText(txt, xMiddle, yMiddle);
+  context.lineWidth = 0.9;
+  context.strokeText(txt, xMiddle, yMiddle);
   context.closePath();
   context.lineWidth = defaultLine;
   context.fillStyle = 'black';
