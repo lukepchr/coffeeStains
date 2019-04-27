@@ -28,6 +28,8 @@ let maxEx3;
 let minTds3;
 let maxTds3;
 
+let realcanvas = document.getElementById('jpgcanvas');
+
 let canvas = document.getElementById('canvas');
 canvas.height = 2 * (h * size + 2 * p);
 canvas.width = 2 * (w * size + 2 * p);
@@ -123,6 +125,8 @@ let drawBoard = () => {
   if (document.getElementById('ebfcheck').checked) {
     brewFormula();
   }
+
+  realcanvas.src = canvasToImage();
 
 };
 
@@ -279,4 +283,29 @@ for (let x = 0; x < numberfields.length; x++) {
 numberfields = document.getElementsByClassName('ext');
 for (let x = 0; x < numberfields.length; x++) {
   numberfields[x].addEventListener('click', drawBoard);
+}
+
+
+
+
+
+function canvasToImage()
+// not my function - thank you http://www.mikechambers.com/blog/
+{
+    //cache height and width
+    var w = canvas.width;
+    var h = canvas.height;
+
+    var data;
+
+  data = context.getImageData(0, 0, w, h);
+  var compositeOperation = context.globalCompositeOperation;
+  context.globalCompositeOperation = "destination-over";
+  context.fillStyle = "white";
+  context.fillRect(0,0,w,h);
+  var imageData = this.canvas.toDataURL("image/jpeg");
+  context.clearRect (0,0,w,h);
+  context.putImageData(data, 0,0);
+  context.globalCompositeOperation = compositeOperation;
+  return imageData;
 }
