@@ -3,13 +3,25 @@
 <html>
 
 <head>
-  <script src="ebf.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
+<div class="flex">
+  <div id = "sidebar">
+    <div id = "logo"> </div>
 
+    <nav>
+      <ul>
+        <li><b>espresso chart</b></li>
+        <li><a href="brew.htm">brewing chart</a></li>
+        <li>TDS calculator</li>
+      </ul>
+    </nav>
+
+    <div id = "footer"><small>&copy 2019 Luke Pochron</small></div>
+</div>
   <div id="flex">
     <div class="container">
       <canvas id="canvas"></canvas>
@@ -85,8 +97,11 @@
       </form>
 
     </div>
+
   </div>
+
+</div>
+
 </body>
 <script type="text/javascript" src="app.js"></script>
-<footer><small>&copy 2019 Luke Pochron</small></footer>
 </html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+<div class="flex">
+  <div id = "sidebar">
+    <div id = "logo"> </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.htm">espresso chart</a></li>
+        <li><b>brewing chart</b></li>
+        <li>TDS calculator</li>
+      </ul>
+    </nav>
+
+    <div id = "footer"><small>&copy 2019 Luke Pochron</small></div>
+</div>
+  <div id="flex">
+    <div class="container">
+      <canvas id="canvas"></canvas>
+      <img src="#" id="jpgcanvas"></img>
+    </div>
+    <div class="container">
+
+      <form id="customize" action="#">
+
+        <div class="box">
+
+          <label for="ebf">
+            <input type="checkbox" class="checkbox" name="ebf" id="ebfcheck" value="ebf" checked>Coffee brewing ratio
+          </label>
+
+
+        </div>
+
+        <div class="box">
+
+          <div class="level">
+
+            <input type="text" name="Name" class="field" id="name1" value="IDEAL" required />
+          </div>
+
+
+          <label for="minextraction">
+            <input type="number" class="field ext minext" name="minextraction1" min="14" max="25" value="18" required />min. extraction [%]</label>
+
+          <label for="maxextraction">
+            <input type="number" class="field ext maxext" name="maxextraction1" min="14" max="25" value="22" required />max. extraction [%]</label>
+
+          <label for="mintds"><input type="number" class="field tds" name="mintds1" min="0.80" max="1.60" value="1.15" step="0.05" required />min. TDS [%]</label>
+          <label for="maxtds"><input type="number" class="field tds" name="maxtds1" min="0.80" max="1.60" value="1.35" step="0.05" required />max. TDS [%]</label>
+        </div>
+
+
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+<script type="text/javascript" src="brew.js"></script>
+</html>

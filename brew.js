@@ -1,5 +1,5 @@
-let w = 11; // width in squares
-let h = 18; // height in squares
+let w = 12; // width in squares
+let h = 16; // height in squares
 let p = 70; // padding
 let size = 40; // side of each square [px]
 let defaultLine = 0.8; // line width for plotting
@@ -28,34 +28,15 @@ let maxEx3;
 let minTds3;
 let maxTds3;
 
-// ebf - coordinates for drawing EBF lines.
-// [0] position on the left as "the height" of TDS
-// [1] position on the right as the "height" of TDS
-// [2] value of EBF to use as the little label [%]
-
-let ebf = [
-[3.7, 6.24, 25],
-[4.5, 7.24, 30],
-[5.4, 8.38, 35],
-[6.25, 9.75, 40],
-[6.95, 11.08, 45],
-[7.66, 12.2, 50],
-[8.35, 13.3, 55],
-[9.15, 14.4, 60],
-[10, 15.47, 65],
-[10.7, 16.5, 70],
-[11.4, 17.55, 75],
-[12, 18.55, 80],
-[12.8, 19.55, 85],
+let ratios = [
+[14, 1.125, 19.25, 1.60, '70g'],
+[14, 1.03, 21.3, 1.6, '65g'],
+[14, 0.96, 23.3, '60g'],
+[14, 0.875, 25.55, '55g'],
+[14.2, 0.8, 26, 1.46, '50g'],
+[15.95, 0.8, 26, 1.29, '45g'],
+[18.5, 0.8, 26, 1.13, '40g']
 ];
-
-// for ratios, they use following format:
-// starting point X, Y
-// ending point X, Y,
-// name
-// all expresed in human units.
-
-
 
 let realcanvas = document.getElementById('jpgcanvas');
 
@@ -70,27 +51,29 @@ let locateExt = (pp = 20) => {
 };
 // convert the extraction [%] value into position on the grid
 
-let locateTds = (pp = 8) => {
-  return (20 - pp) * size + p;
+let locateTds = (pp = 1.35) => {
+  return (1.6 - pp) * 20 * size + p;
 };
 // convert the TDS [%] value into position on the grid
 
-let brewFormula = () => {
-  //plot ebf
-  for (let i = 0; i < ebf.length; i++) {
-    context.beginPath();
-    context.moveTo(p, locateTds(ebf[i][0]));
-    col = `hsl(${80 + i / ebf.length * 280}, 100%, 50%)`;
-    context.strokeStyle = col;
-    context.fillStyle = col;
-    context.lineTo(w * size + p, locateTds(ebf[i][1]));
-    context.font = '9pt Helvetica';
-    context.fillText(`EBF ${ebf[i][2]}%`, 1.1 * p + w * size, locateTds(ebf[i][1]) + 3);
-    context.lineWidth = 0.7;
-    context.stroke();
-    context.closePath();
-  }
-};
+// This bit is to be readded later
+
+// let brewFormula = () => {
+//   //plot ebf
+//   for (let i = 0; i < ebf.length; i++) {
+//     context.beginPath();
+//     context.moveTo(p, locateTds(ebf[i][0]));
+//     col = `hsl(${80 + i / ebf.length * 280}, 100%, 50%)`;
+//     context.strokeStyle = col;
+//     context.fillStyle = col;
+//     context.lineTo(w * size + p, locateTds(ebf[i][1]));
+//     context.font = '9pt Helvetica';
+//     context.fillText(`EBF ${ebf[i][2]}%`, 1.1 * p + w * size, locateTds(ebf[i][1]) + 3);
+//     context.lineWidth = 0.7;
+//     context.stroke();
+//     context.closePath();
+//   }
+// };
 
 let drawBoard = () => {
 
@@ -130,8 +113,13 @@ let drawBoard = () => {
   for (let y = 0; y <= h; y++) {
     context.beginPath();
     context.moveTo(p - 10, y * size + p);
-    context.fillText(20 - y, p - 30, p + y * size + 6);
-    context.lineTo(w * size + p, y * size + p);
+
+    if((y % 2) == 0) {
+      let label = ((16 - y / 2) / 10).toFixed(2);
+      context.fillText(label, p - 50, p + y * size + 6);
+    }
+
+    context.lineTo (w * size + p, y * size + p);
     context.stroke();
     context.closePath();
   }
@@ -139,21 +127,21 @@ let drawBoard = () => {
   validate();
   refresh();
 
-  if (espressobox1) {
-    espressoBox(boxtitle1, minEx1, maxEx1, minTds1, maxTds1, 'olivedrab');
-  }
+  espressoBox('STRONG UNDERDEVELOPED', 14, minEx1, maxTds1, 1.6, 'white');
+  espressoBox('WEAK UNDERDEVELOPED', 14, minEx1, 0.8, minTds1, 'white');
+  espressoBox('STRONG BITTER', maxEx1, 26, maxTds1, 1.6, 'white');
+  espressoBox('WEAK BITTER', maxEx1, 26, 0.8, minTds1, 'white');
 
-  if (espressobox2) {
-    espressoBox(boxtitle2, minEx2, maxEx2, minTds2, maxTds2, 'orange');
-  }
+  espressoBox('WEAK', minEx1, maxEx1, 0.8, minTds1, 'skyblue');
+  espressoBox('STRONG', minEx1, maxEx1, maxTds1, 1.6, 'skyblue');
+  espressoBox('UNDERDEVELOPED', 14, minEx1, minTds1, maxTds1, 'skyblue');
+  espressoBox('BITTER', maxEx1, 26, minTds1, maxTds1, 'skyblue');
 
-  if (espressobox3) {
-    espressoBox(boxtitle3, minEx3, maxEx3, minTds3, maxTds3, 'skyblue');
-  }
+  espressoBox(boxtitle1, minEx1, maxEx1, minTds1, maxTds1, 'orange'); // "ideal"
 
-  if (document.getElementById('ebfcheck').checked) {
-    brewFormula();
-  }
+  // if (document.getElementById('ebfcheck').checked) {
+  //   brewFormula();
+  // }
 
   realcanvas.src = canvasToImage();
 
@@ -211,28 +199,12 @@ let espressoBox = (txt, minEx, maxEx, minTds, maxTds, color) => {
 
 let refresh = () => {
   //values for box 1
-  espressobox1 = document.getElementById('espressobox1').checked;
   boxtitle1 = document.getElementById('name1').value;
   minEx1 = document.getElementsByName('minextraction1')[0].value;
   maxEx1 = document.getElementsByName('maxextraction1')[0].value;
   minTds1 = document.getElementsByName('mintds1')[0].value;
   maxTds1 = document.getElementsByName('maxtds1')[0].value;
 
-  //values for box 2
-  espressobox2 = document.getElementById('espressobox2').checked;
-  boxtitle2 = document.getElementById('name2').value;
-  minEx2 = document.getElementsByName('minextraction2')[0].value;
-  maxEx2 = document.getElementsByName('maxextraction2')[0].value;
-  minTds2 = document.getElementsByName('mintds2')[0].value;
-  maxTds2 = document.getElementsByName('maxtds2')[0].value;
-
-  //values for box 3
-  espressobox3 = document.getElementById('espressobox3').checked;
-  boxtitle3 = document.getElementById('name3').value;
-  minEx3 = document.getElementsByName('minextraction3')[0].value;
-  maxEx3 = document.getElementsByName('maxextraction3')[0].value;
-  minTds3 = document.getElementsByName('mintds3')[0].value;
-  maxTds3 = document.getElementsByName('maxtds3')[0].value;
 };
 
 // user-proof behaviour.
@@ -242,12 +214,12 @@ let validate = () => {
   let alltds = document.getElementsByClassName('tds');
   for (let i = 0; i < alltds.length; i++) {
     let value = alltds[i].value;
-    if (value > 20) {
-      alltds[i].value = 20
+    if (value > 1.6) {
+      alltds[i].value = 1.6;
     };
 
-    if (value < 2) {
-      alltds[i].value = 2
+    if (value < 0.8) {
+      alltds[i].value = 0.8;
     };
 
   }

@@ -2,9 +2,17 @@
   font-family: helvetica, sans-serif;
 }
 
+a{
+  text-decoration: none;
+  color: #999;
+}
+
 body {
   background-color: white;
   text-align: center;
+  margin: 0;
+  padding: 0;
+
 }
 
 .box {
@@ -28,12 +36,31 @@ canvas {
   flex-direction: column;
 
   margin-left: 30px;
-  padding-bottom: 10px;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #flex {
   display: flex;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+}
+
+.flex{
+  display: flex;
+  align-items: center;
+
+}
+
+#footer{
+  color: #555;
+  margin-top: auto;
+  margin-bottom: 10px;
 }
 
 h2 {
@@ -60,6 +87,28 @@ label {
   font-size: 0.9em;
 }
 
+li{
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2vh;
+}
+ul{
+  padding-left: 0;
+  list-style: none;
+}
+nav{
+  color: #999;
+  font-size: 1.2em;
+}
+
+#logo{
+  width: 10vw;
+  height: 10vw;
+  background-image: url("cs.png");
+  background-size: cover;
+  margin-top: 2vw;
+}
+
 #name1 {
   border: 2px solid olivedrab;
 }
@@ -72,6 +121,17 @@ label {
   border: 2px solid skyblue;
 }
 
+#sidebar{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 20vw;
+  background: #333;
+  height: 100vh;
+}
+
 #jpgcanvas{
-  height: 95vh;
+  height: 90vh;
 }
