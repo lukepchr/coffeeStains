@@ -46,17 +46,13 @@ canvas.width = 2 * (w * size + 2 * p);
 let context = canvas.getContext('2d');
 context.scale(2, 2);
 
-let locateExt = (pp = 20) => {
-  return (pp - 14) * size + p;
-};
 // convert the extraction [%] value into position on the grid
 
-let locateTds = (pp = 1.35) => {
-  return (1.6 - pp) * 20 * size + p;
-};
+let locateExt = pp => (pp - 14) * size + p;
+
 // convert the TDS [%] value into position on the grid
 
-// This bit is to be readded later
+let locateTds = pp => (1.6 - pp) * 20 * size + p;
 
 let brewRatio = () => {
   //plot ebf => [X,Y, X, Y, name]
@@ -70,12 +66,12 @@ let brewRatio = () => {
     context.lineTo(locateExt(ratios[i][2]), locateTds(ratios[i][3]));
     context.font = '10pt Helvetica';
 
-    if (ratios[i][3] >= 1.6){ // check if labels should be on the X line?
+    if (ratios[i][3] >= 1.6) { // check if labels should be on the X line?
       context.fillText(ratios[i][4], locateExt(ratios[i][2]), locateTds(1.61));
-    }
-    else{ // draw labels on the Y line
+    } else { // draw labels on the Y line
       context.fillText(ratios[i][4], 1.1 * p + w * size, locateTds(ratios[i][3]) + 3);
     }
+
     context.lineWidth = 1.5;
     context.stroke();
     context.closePath();
@@ -121,20 +117,18 @@ let drawBoard = () => {
     context.beginPath();
     context.moveTo(p - 10, y * size + p);
 
-    if((y % 2) == 0) {
+    if ((y % 2) == 0) {
       let label = ((16 - y / 2) / 10).toFixed(2);
       context.fillText(label, p - 50, p + y * size + 6);
     }
 
-    context.lineTo (w * size + p, y * size + p);
+    context.lineTo(w * size + p, y * size + p);
     context.stroke();
     context.closePath();
   }
 
   validate();
   refresh();
-
-
 
   espressoBox('STRONG UNDERDEVELOPED', 14, minEx1, maxTds1, 1.6, 'white');
   espressoBox('WEAK UNDERDEVELOPED', 14, minEx1, 0.8, minTds1, 'white');
@@ -152,10 +146,7 @@ let drawBoard = () => {
 
   espressoBox(boxtitle1, minEx1, maxEx1, minTds1, maxTds1, 'orange'); // "ideal"
 
-
-
   realcanvas.src = canvasToImage();
-
 };
 
 let espressoBox = (txt, minEx, maxEx, minTds, maxTds, color, alpha = 0.4) => {
@@ -259,6 +250,7 @@ let validate = () => {
     if (min[i].value > max[i].value) {
       [min[i].value, max[i].value] = [max[i].value, min[i].value];
     }
+
     if (min[i].value == max[i].value) {
       if (min[i].value >= 15) {
         min[i].value--;
@@ -269,9 +261,7 @@ let validate = () => {
   }
 };
 
-
 drawBoard();
-
 
 // add event listeners to react to input
 
@@ -297,27 +287,22 @@ for (let x = 0; x < numberfields.length; x++) {
   numberfields[x].addEventListener('click', drawBoard);
 }
 
-
-
-
-
 function canvasToImage()
-// not my function - thank you http://www.mikechambers.com/blog/
 {
-    //cache height and width
-    var w = canvas.width;
-    var h = canvas.height;
-
-    var data;
+  // not my function - thank you http://www.mikechambers.com/blog/
+  //cache height and width
+  var w = canvas.width;
+  var h = canvas.height;
+  var data;
 
   data = context.getImageData(0, 0, w, h);
   var compositeOperation = context.globalCompositeOperation;
-  context.globalCompositeOperation = "destination-over";
-  context.fillStyle = "white";
-  context.fillRect(0,0,w,h);
-  var imageData = this.canvas.toDataURL("image/png");
-  context.clearRect (0,0,w,h);
-  context.putImageData(data, 0,0);
+  context.globalCompositeOperation = 'destination-over';
+  context.fillStyle = 'white';
+  context.fillRect(0, 0, w, h);
+  var imageData = this.canvas.toDataURL('image/png');
+  context.clearRect(0, 0, w, h);
+  context.putImageData(data, 0, 0);
   context.globalCompositeOperation = compositeOperation;
   return imageData;
 }

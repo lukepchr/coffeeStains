@@ -8,100 +8,98 @@
 </head>
 
 <body>
-<div class="flex">
-  <div id = "sidebar">
-    <div id = "logo"> </div>
+  <div class="flex">
+    <div id="sidebar">
+      <div id="logo"> </div>
 
-    <nav>
-      <ul>
-        <li><b>espresso chart</b></li>
-        <li><a href="brew.htm">brewing chart</a></li>
-        <li style="text-decoration: line-through;">TDS calculator</li>
-      </ul>
-    </nav>
+      <nav>
+        <ul>
+          <li><b>espresso chart</b></li>
+          <li><a href="brew.htm">brewing chart</a></li>
+          <li style="text-decoration: line-through;">TDS calculator</li>
+        </ul>
+      </nav>
 
-    <div id = "footer"><small>&copy 2019 Luke Pochron</small></div>
-</div>
-  <div id="flex">
-    <div class="container">
-      <canvas id="canvas"></canvas>
-      <img src="#" id="jpgcanvas"></img>
+      <div id="footer"><small>&copy 2019 Luke Pochron</small></div>
     </div>
-    <div class="container">
+    <div id="flex">
+      <div class="container">
+        <canvas id="canvas"></canvas>
+        <img src="#" id="jpgcanvas"></img>
+      </div>
+      <div class="container">
 
-      <form id="customize" action="#">
+        <form id="customize" action="#">
 
-        <div class="box">
+          <div class="box">
 
-          <label for="ebf">
-            <input type="checkbox" class="checkbox" name="ebf" id="ebfcheck" value="ebf" checked>Espresso brew formula
-          </label>
+            <label for="ebf">
+              <input type="checkbox" class="checkbox" name="ebf" id="ebfcheck" value="ebf" checked>Espresso brew formula
+            </label>
 
-
-        </div>
-
-        <div class="box">
-
-          <div class="level">
-            <input id="espressobox1" type="checkbox" class="checkbox" name="active" checked />
-            <input type="text" name="Name" class="field" id="name1" value="Espresso" required />
           </div>
 
+          <div class="box">
 
-          <label for="minextraction">
-            <input type="number" class="field ext minext" name="minextraction1" min="14" max="25" value="18" required />min. extraction [%]</label>
+            <div class="level">
+              <input id="espressobox1" type="checkbox" class="checkbox" name="active" checked />
+              <input type="text" name="Name" class="field" id="name1" value="Espresso" required />
+            </div>
+            <label for="maxextraction">
+              <input type="number" class="field ext maxext" name="maxextraction1" min="14" max="25" value="21" required />max. extraction [%]</label>
 
-          <label for="maxextraction">
-            <input type="number" class="field ext maxext" name="maxextraction1" min="14" max="25" value="21" required />max. extraction [%]</label>
+            <label for="minextraction">
+              <input type="number" class="field ext minext" name="minextraction1" min="14" max="25" value="18" required />min. extraction [%]</label>
 
-          <label for="mintds"><input type="number" class="field tds" name="mintds1" min="2" max="20" value="8" required />min. TDS [%]</label>
-          <label for="maxtds"><input type="number" class="field tds" name="maxtds1" min="2" max="20" value="12" required />max. TDS [%]</label>
-        </div>
 
-        <div class="box">
 
-          <div class="level">
-            <input id="espressobox2" type="checkbox" class="checkbox" name="active" checked />
-            <input type="text" class="field" name="Name" id="name2" value="Ristretto" required />
+            <label for="maxtds"><input type="number" class="field tds" name="maxtds1" min="2" max="20" value="12" required />max. TDS [%]</label>
+            <label for="mintds"><input type="number" class="field tds" name="mintds1" min="2" max="20" value="8" required />min. TDS [%]</label>
+
           </div>
 
+          <div class="box">
 
-          <label for="minextraction2">
-            <input type="number" class="field ext minext" name="minextraction2" min="14" max="25" value="18" required />min. extraction [%]</label>
+            <div class="level">
+              <input id="espressobox2" type="checkbox" class="checkbox" name="active" checked />
+              <input type="text" class="field" name="Name" id="name2" value="Ristretto" required />
+            </div>
 
-          <label for="maxextraction">
-            <input type="number" class="field ext maxext" name="maxextraction2" min="14" max="25" value="21" required />max. extraction [%]</label>
+            <label for="maxextraction">
+              <input type="number" class="field ext maxext" name="maxextraction2" min="14" max="25" value="21" required />max. extraction [%]</label>
 
+            <label for="minextraction2">
+              <input type="number" class="field ext minext" name="minextraction2" min="14" max="25" value="18" required />min. extraction [%]</label>
+            <label for="maxtds"><input type="number" class="field tds" name="maxtds2" min="2" max="20" value="18" required />max. TDS [%]</label>
+            <label for="mintds"><input type="number" class="field tds" name="mintds2" min="2" max="20" value="12" required />min. TDS [%]</label>
 
-          <label for="mintds"><input type="number" class="field tds" name="mintds2" min="2" max="20" value="12" required />min. TDS [%]</label>
-          <label for="maxtds"><input type="number" class="field tds" name="maxtds2" min="2" max="20" value="18" required />max. TDS [%]</label>
-        </div>
-
-        <div class="box">
-
-          <div class="level">
-            <input id="espressobox3" type="checkbox" class="checkbox" name="active" checked />
-            <input type="text" class="field" name="Name" id="name3" value="Lungo" required />
           </div>
 
+          <div class="box">
 
-          <label for="minextraction">
-            <input type="number" class="field ext minext" name="minextraction3" min="14" max="25" value="18" require />min. extraction [%]</label>
+            <div class="level">
+              <input id="espressobox3" type="checkbox" class="checkbox" name="active" checked />
+              <input type="text" class="field" name="Name" id="name3" value="Lungo" required />
+            </div>
 
-          <label for="maxextraction">
-            <input type="number" class="field ext maxext" name="maxextraction3" min="14" max="25" value="21" require />max. extraction [%]</label>
+            <label for="maxextraction">
+              <input type="number" class="field ext maxext" name="maxextraction3" min="14" max="25" value="21" require />max. extraction [%]</label>
 
-          <label for="mintds"><input type="number" class="field tds" name="mintds3" min="2" max="20" value="5" require />min. TDS [%]</label>
-          <label for="maxtds"><input type="number" class="field tds" name="maxtds3" min="2" max="20" value="8" require />max. TDS [%]</label>
-        </div>
-      </form>
+            <label for="minextraction">
+              <input type="number" class="field ext minext" name="minextraction3" min="14" max="25" value="18" require />min. extraction [%]</label>
+            <label for="maxtds"><input type="number" class="field tds" name="maxtds3" min="2" max="20" value="8" require />max. TDS [%]</label>
+            <label for="mintds"><input type="number" class="field tds" name="mintds3" min="2" max="20" value="5" require />min. TDS [%]</label>
+
+          </div>
+        </form>
+
+      </div>
 
     </div>
 
   </div>
 
-</div>
-
 </body>
 <script type="text/javascript" src="app.js"></script>
+
 </html>

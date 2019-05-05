@@ -53,9 +53,7 @@ let ebf = [
 // starting point X, Y
 // ending point X, Y,
 // name
-// all expresed in human units.
-
-
+// all expressed in human units.
 
 let realcanvas = document.getElementById('jpgcanvas');
 
@@ -65,15 +63,13 @@ canvas.width = 2 * (w * size + 2 * p);
 let context = canvas.getContext('2d');
 context.scale(2, 2);
 
-let locateExt = (pp = 20) => {
-  return (pp - 14) * size + p;
-};
 // convert the extraction [%] value into position on the grid
 
-let locateTds = (pp = 8) => {
-  return (20 - pp) * size + p;
-};
+let locateExt = pp => (pp - 14) * size + p;
+
 // convert the TDS [%] value into position on the grid
+
+let locateTds = pp => (20 - pp) * size + p;
 
 let brewFormula = () => {
   //plot ebf
@@ -243,11 +239,11 @@ let validate = () => {
   for (let i = 0; i < alltds.length; i++) {
     let value = alltds[i].value;
     if (value > 20) {
-      alltds[i].value = 20
+      alltds[i].value = 20;
     };
 
     if (value < 2) {
-      alltds[i].value = 2
+      alltds[i].value = 2;
     };
 
   }
@@ -286,9 +282,7 @@ let validate = () => {
   }
 };
 
-
 drawBoard();
-
 
 // add event listeners to react to input
 
@@ -314,27 +308,22 @@ for (let x = 0; x < numberfields.length; x++) {
   numberfields[x].addEventListener('click', drawBoard);
 }
 
+function canvasToImage() {
+  // not my function - thank you http://www.mikechambers.com/blog/
+  //cache height and width
+  var w = canvas.width;
+  var h = canvas.height;
 
-
-
-
-function canvasToImage()
-// not my function - thank you http://www.mikechambers.com/blog/
-{
-    //cache height and width
-    var w = canvas.width;
-    var h = canvas.height;
-
-    var data;
+  var data;
 
   data = context.getImageData(0, 0, w, h);
   var compositeOperation = context.globalCompositeOperation;
-  context.globalCompositeOperation = "destination-over";
-  context.fillStyle = "white";
-  context.fillRect(0,0,w,h);
-  var imageData = this.canvas.toDataURL("image/png");
-  context.clearRect (0,0,w,h);
-  context.putImageData(data, 0,0);
+  context.globalCompositeOperation = 'destination-over';
+  context.fillStyle = 'white';
+  context.fillRect(0, 0, w, h);
+  var imageData = this.canvas.toDataURL('image/png');
+  context.clearRect(0, 0, w, h);
+  context.putImageData(data, 0, 0);
   context.globalCompositeOperation = compositeOperation;
   return imageData;
 }

@@ -2,7 +2,7 @@
   font-family: helvetica, sans-serif;
 }
 
-a{
+a {
   text-decoration: none;
   color: #999;
 }
@@ -12,7 +12,6 @@ body {
   text-align: center;
   margin: 0;
   padding: 0;
-
 }
 
 .box {
@@ -34,11 +33,10 @@ canvas {
 #customize {
   display: flex;
   flex-direction: column;
-
   margin-left: 30px;
 }
 
-.container{
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,13 +49,12 @@ canvas {
   width: 100%;
 }
 
-.flex{
+.flex {
   display: flex;
   align-items: center;
-
 }
 
-#footer{
+#footer {
   color: #555;
   margin-top: auto;
   margin-bottom: 10px;
@@ -87,21 +84,23 @@ label {
   font-size: 0.9em;
 }
 
-li{
+li {
   width: 100%;
   text-align: center;
   margin-bottom: 2vh;
 }
-ul{
+
+ul {
   padding-left: 0;
   list-style: none;
 }
-nav{
+
+nav {
   color: #999;
   font-size: 1.2em;
 }
 
-#logo{
+#logo {
   width: 10vw;
   height: 10vw;
   background-image: url("cs.png");
@@ -120,21 +119,21 @@ nav{
 #name3 {
   border: 2px solid skyblue;
 }
+
 #name4 {
   border: 2px solid orange;
 }
 
-#sidebar{
+#sidebar {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-
   width: 20vw;
   background: #333;
   height: 100vh;
 }
 
-#jpgcanvas{
+#jpgcanvas {
   height: 90vh;
 }
