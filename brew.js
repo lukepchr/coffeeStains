@@ -82,12 +82,12 @@ let drawBoard = () => {
 
   context.clearRect(0, 0, canvas.width, canvas.height);
 
-  context.font = '8pt Helvetica';
+  context.font = '10pt Helvetica';
   context.beginPath();
   context.strokeStyle = 'black';
   context.fillStyle = 'black';
   context.fillText('[%TDS]', 0.5 * p, p - 22);
-  let txt = 'Extraction [%]';
+  let txt = 'SOLUBLES YIELD - EXTRACTION [%]';
   context.fillText(txt, size * w / 2 + p - context.measureText(txt).width / 2,
     (h + 1) * size + p + 10);
   context.closePath();
@@ -132,10 +132,10 @@ let drawBoard = () => {
   espressoBox('STRONG BITTER', maxEx1, 26, maxTds1, 1.6, 'white');
   espressoBox('WEAK BITTER', maxEx1, 26, 0.8, minTds1, 'white');
 
-  espressoBox('WEAK', minEx1, maxEx1, 0.8, minTds1, 'skyblue');
-  espressoBox('STRONG', minEx1, maxEx1, maxTds1, 1.6, 'skyblue');
-  espressoBox('UNDERDEVELOPED', 14, minEx1, minTds1, maxTds1, 'skyblue');
-  espressoBox('BITTER', maxEx1, 26, minTds1, maxTds1, 'skyblue');
+  espressoBox('WEAK', minEx1, maxEx1, 0.8, minTds1, 'orange', 0.1);
+  espressoBox('STRONG', minEx1, maxEx1, maxTds1, 1.6, 'orange', 0.1);
+  espressoBox('UNDERDEVELOPED', 14, minEx1, minTds1, maxTds1, 'orange', 0.1);
+  espressoBox('BITTER', maxEx1, 26, minTds1, maxTds1, 'orange', 0.1);
 
   espressoBox(boxtitle1, minEx1, maxEx1, minTds1, maxTds1, 'orange'); // "ideal"
 
@@ -147,18 +147,17 @@ let drawBoard = () => {
 
 };
 
-let espressoBox = (txt, minEx, maxEx, minTds, maxTds, color) => {
+let espressoBox = (txt, minEx, maxEx, minTds, maxTds, color, alpha = 0.4) => {
 
   context.beginPath();
-  context.globalAlpha = 0.8;
   context.fillStyle = color; // Espresso
   context.strokeStyle = color;
-  context.globalAlpha = 0.7;
+  context.globalAlpha = 0.8;
   context.lineWidth = 3;
   context.strokeRect(locateExt(minEx), locateTds(minTds),
     locateExt(maxEx) - locateExt(minEx),
     locateTds(maxTds) - locateTds(minTds));
-  context.globalAlpha = 0.3;
+  context.globalAlpha = alpha;
   context.fillRect(locateExt(minEx), locateTds(minTds),
     locateExt(maxEx) - locateExt(minEx),
     locateTds(maxTds) - locateTds(minTds));
@@ -199,7 +198,7 @@ let espressoBox = (txt, minEx, maxEx, minTds, maxTds, color) => {
 
 let refresh = () => {
   //values for box 1
-  boxtitle1 = document.getElementById('name1').value;
+  boxtitle1 = document.getElementById('name4').value;
   minEx1 = document.getElementsByName('minextraction1')[0].value;
   maxEx1 = document.getElementsByName('maxextraction1')[0].value;
   minTds1 = document.getElementsByName('mintds1')[0].value;

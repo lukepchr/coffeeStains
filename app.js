@@ -99,12 +99,12 @@ let drawBoard = () => {
 
   context.clearRect(0, 0, canvas.width, canvas.height);
 
-  context.font = '8pt Helvetica';
+  context.font = '10pt Helvetica';
   context.beginPath();
   context.strokeStyle = 'black';
   context.fillStyle = 'black';
   context.fillText('[%TDS]', 0.5 * p, p - 22);
-  let txt = 'Extraction [%]';
+  let txt = 'SOLUBLES YIELD - EXTRACTION [%]';
   context.fillText(txt, size * w / 2 + p - context.measureText(txt).width / 2,
     (h + 1) * size + p + 10);
   context.closePath();

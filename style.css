@@ -120,6 +120,9 @@ nav{
 #name3 {
   border: 2px solid skyblue;
 }
+#name4 {
+  border: 2px solid orange;
+}
 
 #sidebar{
   display: flex;
