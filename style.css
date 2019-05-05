@@ -76,8 +76,24 @@ h2 {
 
 input[type=number] {
   padding: 5px;
-  margin: 5px;
+  margin-right: 5px;
   width: 40px;
+}
+
+input[type=text]{
+  margin-bottom: 10px;
+}
+
+input[type=text], input[type=number] {
+width: auto;
+font-size: 1.1em;
+height: 1.7em;
+padding-left: 0.5em;
+border-radius: 5px;
+background: #fff;
+overflow: hidden;
+border: 1px solid #fff;
+box-shadow: 1px 0 3px #ccc inset;
 }
 
 label {
@@ -109,19 +125,19 @@ nav {
 }
 
 #name1 {
-  border: 2px solid olivedrab;
+  background: darkseagreen;
 }
 
 #name2 {
-  border: 2px solid orange;
+  background: gold;
 }
 
 #name3 {
-  border: 2px solid skyblue;
+  background: powderblue;
 }
 
 #name4 {
-  border: 2px solid orange;
+  background: gold;
 }
 
 #sidebar {

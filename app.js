@@ -135,16 +135,17 @@ let drawBoard = () => {
   validate();
   refresh();
 
-  if (espressobox1) {
-    espressoBox(boxtitle1, minEx1, maxEx1, minTds1, maxTds1, 'olivedrab');
+
+  if (espressobox3) {
+    espressoBox(boxtitle3, minEx3, maxEx3, minTds3, maxTds3, 'skyblue');
   }
 
   if (espressobox2) {
     espressoBox(boxtitle2, minEx2, maxEx2, minTds2, maxTds2, 'orange');
   }
 
-  if (espressobox3) {
-    espressoBox(boxtitle3, minEx3, maxEx3, minTds3, maxTds3, 'skyblue');
+  if (espressobox1) {
+    espressoBox(boxtitle1, minEx1, maxEx1, minTds1, maxTds1, 'olivedrab');
   }
 
   if (document.getElementById('ebfcheck').checked) {

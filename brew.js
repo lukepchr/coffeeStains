@@ -60,7 +60,7 @@ let brewRatio = () => {
     context.beginPath();
     context.moveTo(locateExt(ratios[i][0]), locateTds(ratios[i][1]));
     col = 'crimson';
-    context.globalAlpha = 0.6;
+    context.globalAlpha = 0.9;
     context.strokeStyle = col;
     context.fillStyle = col;
     context.lineTo(locateExt(ratios[i][2]), locateTds(ratios[i][3]));
@@ -72,7 +72,7 @@ let brewRatio = () => {
       context.fillText(ratios[i][4], 1.1 * p + w * size, locateTds(ratios[i][3]) + 3);
     }
 
-    context.lineWidth = 1.5;
+    context.lineWidth = 1;
     context.stroke();
     context.closePath();
   }
@@ -135,14 +135,16 @@ let drawBoard = () => {
   espressoBox('STRONG BITTER', maxEx1, 26, maxTds1, 1.6, 'white');
   espressoBox('WEAK BITTER', maxEx1, 26, 0.8, minTds1, 'white');
 
-  if (document.getElementById('ebfcheck').checked) {
-    brewRatio();
-  }
+
 
   espressoBox('WEAK', minEx1, maxEx1, 0.8, minTds1, 'orange', 0.1);
   espressoBox('STRONG', minEx1, maxEx1, maxTds1, 1.6, 'orange', 0.1);
   espressoBox('UNDERDEVELOPED', 14, minEx1, minTds1, maxTds1, 'orange', 0.1);
   espressoBox('BITTER', maxEx1, 26, minTds1, maxTds1, 'orange', 0.1);
+
+  if (document.getElementById('ebfcheck').checked) {
+    brewRatio();
+  }
 
   espressoBox(boxtitle1, minEx1, maxEx1, minTds1, maxTds1, 'orange'); // "ideal"
 
