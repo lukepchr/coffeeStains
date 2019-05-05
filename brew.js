@@ -31,8 +31,8 @@ let maxTds3;
 let ratios = [
 [14, 1.125, 19.25, 1.60, '70g'],
 [14, 1.03, 21.3, 1.6, '65g'],
-[14, 0.96, 23.3, '60g'],
-[14, 0.875, 25.55, '55g'],
+[14, 0.96, 23.3, 1.6, '60g'],
+[14, 0.875, 25.55, 1.6, '55g'],
 [14.2, 0.8, 26, 1.46, '50g'],
 [15.95, 0.8, 26, 1.29, '45g'],
 [18.5, 0.8, 26, 1.13, '40g']
@@ -58,22 +58,29 @@ let locateTds = (pp = 1.35) => {
 
 // This bit is to be readded later
 
-// let brewFormula = () => {
-//   //plot ebf
-//   for (let i = 0; i < ebf.length; i++) {
-//     context.beginPath();
-//     context.moveTo(p, locateTds(ebf[i][0]));
-//     col = `hsl(${80 + i / ebf.length * 280}, 100%, 50%)`;
-//     context.strokeStyle = col;
-//     context.fillStyle = col;
-//     context.lineTo(w * size + p, locateTds(ebf[i][1]));
-//     context.font = '9pt Helvetica';
-//     context.fillText(`EBF ${ebf[i][2]}%`, 1.1 * p + w * size, locateTds(ebf[i][1]) + 3);
-//     context.lineWidth = 0.7;
-//     context.stroke();
-//     context.closePath();
-//   }
-// };
+let brewRatio = () => {
+  //plot ebf => [X,Y, X, Y, name]
+  for (let i = 0; i < ratios.length; i++) {
+    context.beginPath();
+    context.moveTo(locateExt(ratios[i][0]), locateTds(ratios[i][1]));
+    col = 'crimson';
+    context.globalAlpha = 0.6;
+    context.strokeStyle = col;
+    context.fillStyle = col;
+    context.lineTo(locateExt(ratios[i][2]), locateTds(ratios[i][3]));
+    context.font = '10pt Helvetica';
+
+    if (ratios[i][3] >= 1.6){ // check if labels should be on the X line?
+      context.fillText(ratios[i][4], locateExt(ratios[i][2]), locateTds(1.61));
+    }
+    else{ // draw labels on the Y line
+      context.fillText(ratios[i][4], 1.1 * p + w * size, locateTds(ratios[i][3]) + 3);
+    }
+    context.lineWidth = 1.5;
+    context.stroke();
+    context.closePath();
+  }
+};
 
 let drawBoard = () => {
 
@@ -127,10 +134,16 @@ let drawBoard = () => {
   validate();
   refresh();
 
+
+
   espressoBox('STRONG UNDERDEVELOPED', 14, minEx1, maxTds1, 1.6, 'white');
   espressoBox('WEAK UNDERDEVELOPED', 14, minEx1, 0.8, minTds1, 'white');
   espressoBox('STRONG BITTER', maxEx1, 26, maxTds1, 1.6, 'white');
   espressoBox('WEAK BITTER', maxEx1, 26, 0.8, minTds1, 'white');
+
+  if (document.getElementById('ebfcheck').checked) {
+    brewRatio();
+  }
 
   espressoBox('WEAK', minEx1, maxEx1, 0.8, minTds1, 'orange', 0.1);
   espressoBox('STRONG', minEx1, maxEx1, maxTds1, 1.6, 'orange', 0.1);
@@ -139,9 +152,7 @@ let drawBoard = () => {
 
   espressoBox(boxtitle1, minEx1, maxEx1, minTds1, maxTds1, 'orange'); // "ideal"
 
-  // if (document.getElementById('ebfcheck').checked) {
-  //   brewFormula();
-  // }
+
 
   realcanvas.src = canvasToImage();
 
@@ -198,6 +209,7 @@ let espressoBox = (txt, minEx, maxEx, minTds, maxTds, color, alpha = 0.4) => {
 
 let refresh = () => {
   //values for box 1
+
   boxtitle1 = document.getElementById('name4').value;
   minEx1 = document.getElementsByName('minextraction1')[0].value;
   maxEx1 = document.getElementsByName('maxextraction1')[0].value;
