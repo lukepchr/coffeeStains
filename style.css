@@ -26,6 +26,13 @@ body {
   font-size: 13px;
 }
 
+.xl{
+  padding: 50px 100px;
+  width: auto;
+}
+
+
+
 canvas {
   display: none;
 }
@@ -81,7 +88,7 @@ input[type=number] {
 }
 
 input[type=text]{
-  margin-bottom: 10px;
+  margin-bottom: 3px;
 }
 
 input[type=text], input[type=number] {
@@ -98,6 +105,10 @@ box-shadow: 1px 0 3px #ccc inset;
 
 label {
   font-size: 0.9em;
+}
+
+.xlgaps{
+  margin-top: 15px;
 }
 
 li {

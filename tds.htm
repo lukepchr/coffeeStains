@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="flex">
+  <div id ="sidebar">
+    <div id = "logo"> </div>
+    <nav>
+      <ul>
+        <li><a href="index.htm">espresso chart</a></li>
+        <li><a href="brew.htm">brewing chart</a></li>
+        <li><a href="tds.htm"><b>TDS calculator</b></a></li>
+      </ul>
+    </nav>
+
+    <div id = "footer"><small>&copy 2019 Luke Pochron</small></div>
+</div>
+  <div id="flex">
+
+    <div class="container">
+
+      <form id="customize">
+
+
+
+        <div class="box xl">
+
+          <div class="level">
+
+          <h2>Extraction / TDS calculator</h2>
+          </div>
+          <label for="water" class="xlgaps">
+            <input type="number" class="field ext maxext" name="water" id="water" />water delivered [g]</label>
+
+          <label for="dose" class="xlgaps">
+            <input type="number" class="field ext minext" name="dose" id="dose"  />dose [g]</label>
+
+          <label for="brewmass" class="xlgaps"><input type="number" class="field tds" name="brewmass" id="brewmass"/>brew mass [g]</label>
+
+          <label for="LRR" class="xlgaps"><input type="number" class="field tds" name="LRR" id="LRR" value="1.2" />liquid retention ratio [g/g]</label>
+          <small>1.2 is an often assumed value for drip coffee.</small>
+          <small>To calculate properly, scroll down.</small>
+
+
+          <label for="tds" class="xlgaps"><input type="number" class="field tds" name="tds" id="tds"   />TDS [%]</label>
+
+                <label for="extraction" class="xlgaps"><input type="number" class="field tds" name="extraction" id="extraction"  />extraction [%]</label>
+<HR>
+
+<button id="calculate">Calculate</button>
+
+
+        </div>
+
+
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+
+</body>
+<script type="text/javascript" src="tds.js"></script>
+</html>
+
+</html>
