@@ -3,7 +3,7 @@ let brewmass;
 let tds;
 let dose;
 let extraction;
-let button = document.getElementById('calculate');
+let button1 = document.getElementById('calculate');
 
 let readValues = () => {
   water = document.getElementById('water').value;
@@ -18,18 +18,30 @@ let calculate = (event) => {
   readValues();
 
   if (water && dose && lrr) {
-      document.getElementById('brewmass').value = water - dose*lrr;
+    document.getElementById('brewmass').value = (water - dose * lrr).toFixed(1);
   }
 
-  if (brewmass && tds && dose){
+  if (brewmass && tds && dose) {
     document.getElementById('extraction').value = ((brewmass * tds) / dose).toFixed(2);
   }
 
+  if (extraction && dose && brewmass) {
+    document.getElementById('tds').value =
+  ((extraction * dose) / brewmass).toFixed(2);
+  }
+
+  if (brewmass && tds && extraction) {
+    document.getElementById('dose').value = ((brewmass * tds) / extraction).toFixed(2);
+  }
+
+  if (brewmass && dose && lrr) {
+    document.getElementById('water').value = (brewmass / 1 + (dose * lrr)).toFixed(2);
+  }
 
 
 };
 
-button.addEventListener('click', function(event){
+button1.addEventListener('click', function(event) {
   event.preventDefault();
   calculate();
 });
