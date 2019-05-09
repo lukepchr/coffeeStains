@@ -161,6 +161,30 @@ nav {
   height: 100vh;
 }
 
+#stains{
+background-size: cover;
+  background-image: url("actualStains/stain1.jpg");
+  width: 22vw;
+  height: 22vw;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  right: 0;
+
+}
+
+#stains2{
+background-size: cover;
+  background-image: url("actualStains/stain2.jpg");
+  width: 17vw;
+  height: 43vw;
+  position: fixed;
+  z-index: -1;
+  bottom: 0;
+  left: 10vw;
+
+}
+
 #jpgcanvas {
   height: 90vh;
 }
