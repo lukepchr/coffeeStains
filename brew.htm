@@ -4,6 +4,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="slider.css">
 </head>
 <body>
   <div id="stains">
@@ -55,7 +56,13 @@
         <div class="box">
 
           <label for="ebf">
-            <input type="checkbox" class="checkbox" name="ebf" id="ebfcheck" value="ebf" checked>Coffee-to-Water Ratio [g/L]
+
+            <div id ="slider" class="checkbox">
+  <div id= "ball" class="checkbox"></div>
+</div>Coffee-to-Water Ratio [g/L]
+
+            <!---<input type="checkbox" class="checkbox" name="ebf" id="ebfcheck" value="ebf" checked>Coffee-to-Water Ratio [g/L] -->
+
           </label>
 
         </div>
@@ -69,5 +76,7 @@
 </div>
 
 </body>
+<script type="text/javascript" src="slider.js"> </script>
 <script type="text/javascript" src="brew.js"></script>
+
 </html>

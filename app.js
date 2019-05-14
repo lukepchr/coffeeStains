@@ -148,7 +148,7 @@ let drawBoard = () => {
     espressoBox(boxtitle1, minEx1, maxEx1, minTds1, maxTds1, 'olivedrab');
   }
 
-  if (document.getElementById('ebfcheck').checked) {
+  if (isOn) {
     brewFormula();
   }
 
@@ -296,7 +296,7 @@ for (let x = 0; x < fields.length; x++) {
 //
 let checkboxes = document.getElementsByClassName('checkbox');
 for (let x = 0; x < checkboxes.length; x++) {
-  checkboxes[x].addEventListener('input', drawBoard);
+  checkboxes[x].addEventListener('click', drawBoard);
 }
 
 let numberfields = document.getElementsByClassName('tds');

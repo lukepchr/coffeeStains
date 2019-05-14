@@ -142,7 +142,7 @@ let drawBoard = () => {
   espressoBox('UNDERDEVELOPED', 14, minEx1, minTds1, maxTds1, 'orange', 0.1);
   espressoBox('BITTER', maxEx1, 26, minTds1, maxTds1, 'orange', 0.1);
 
-  if (document.getElementById('ebfcheck').checked) {
+  if (isOn) {
     brewRatio();
   }
 
@@ -276,7 +276,7 @@ for (let x = 0; x < fields.length; x++) {
 //
 let checkboxes = document.getElementsByClassName('checkbox');
 for (let x = 0; x < checkboxes.length; x++) {
-  checkboxes[x].addEventListener('input', drawBoard);
+  checkboxes[x].addEventListener('click', drawBoard);
 }
 
 let numberfields = document.getElementsByClassName('tds');

@@ -1,0 +1,43 @@
+#slider{
+display: inline-flex;
+  width: 30px;
+  height: 15px;
+padding: 1px 2px;
+margin-right: 5px;
+background-color: #92D1C3;
+  border-radius: 15px;
+  border: 1px solid #3E363F;
+}
+
+#ball{
+
+  margin: auto 0 auto auto;
+  width: 13px;
+    height: 13px;
+    background-color: #FFFCE8;
+    border-radius: 14px;
+  animation-fill-mode: forwards;
+  animation-duration: 0.25s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  border: 1px solid #3E363F;
+
+  }
+
+@keyframes slideOff {
+  0% {margin: auto 0 auto auto;
+  background-color: #FFFCE8;}
+  50% {margin: auto 50% auto auto; }
+  100% {margin: auto auto auto 0;
+  background-color: #FFEFE0};
+}
+
+@keyframes slideOn {
+  0% {margin: auto auto auto 0;
+    background-color: #FAFAFA;}
+  50% {margin: auto 50% auto auto;
+}
+  100% {margin: auto 0 auto auto;
+  background-color: #FFFCE8}
+
+}
