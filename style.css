@@ -276,6 +276,9 @@ background-size: cover;
   .box.xl{
     width: 100%;
   }
+  .box.brew{
+     width: 30vw;
+  }
   }
 
   @media (max-width: 600px){
