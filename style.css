@@ -198,18 +198,23 @@ background-size: cover;
 
 @media (max-width: 920px){
   /* horizontal menu please */
+  #jpgcanvas{
+    width: 90%;
+    height: auto;
+  }
   #customize{
     flex-direction: row;
+    margin: 0 0 5px 0;
   }
   label{
     font-size: 0.6em;
   }
   .box{
-    max-width: 20vw;
+    width: 20%;
+    margin: 1px;
   }
-  input{
-    max-width: 18vw;
-  }
+
+
 
   body{
     padding-top: 120px;
@@ -260,8 +265,16 @@ background-size: cover;
 
   input[type=number]{
     width: 22px;
-    padding: 1px;
+    padding: 3px;
     margin: 1px;
+  }
+  input[type=text]{
+    width: 90%;
+    padding: 5px;
+    margin: 1px;
+  }
+  .box.xl{
+    width: 100%;
   }
   }
 
