@@ -189,3 +189,91 @@ background-size: cover;
 #jpgcanvas {
   height: 90vh;
 }
+
+@media (max-width: 1111px){
+  #stains2{
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 920px){
+  /* horizontal menu please */
+  #customize{
+    flex-direction: row;
+  }
+  label{
+    font-size: 0.6em;
+  }
+  .box{
+    max-width: 20vw;
+  }
+  input{
+    max-width: 18vw;
+  }
+
+  body{
+    padding-top: 120px;
+  }
+  #sidebar{
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    padding-left: 30px;
+  }
+  #stains{
+    visibility: hidden;
+  }
+
+  #flex{
+    flex-direction: column;
+  }
+
+  nav{
+    margin: 20px auto;
+  }
+
+  ul{
+
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+  }
+  li{
+    margin: 10px;
+    font-size: 0.9em;
+  }
+  #logo{
+    width: 50px;
+    height: 50px;
+    margin: 5px 0;
+
+  }
+  #footer{
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    font-size: 0.7em;
+
+  }
+
+  input[type=number]{
+    width: 22px;
+    padding: 1px;
+    margin: 1px;
+  }
+  }
+
+  @media (max-width: 600px){
+    #calc{
+      visibility: hidden;
+    }
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+  /* all the edit boxes go to the top */
+
+}
